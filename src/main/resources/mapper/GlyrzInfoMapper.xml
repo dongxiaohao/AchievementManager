@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.GlyrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.GlyrzInfo" >
+    <id column="GLYRZID" property="glyrzid" jdbcType="NUMERIC" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="DLZH" property="dlzh" jdbcType="VARCHAR" />
+    <result column="BM" property="bm" jdbcType="VARCHAR" />
+    <result column="IPDZ" property="ipdz" jdbcType="VARCHAR" />
+    <result column="CXSFZH" property="cxsfzh" jdbcType="VARCHAR" />
+    <result column="CXKSLX" property="cxkslx" jdbcType="NUMERIC" />
+    <result column="QQFF" property="qqff" jdbcType="VARCHAR" />
+    <result column="CZJG" property="czjg" jdbcType="NUMERIC" />
+    <result column="CZSJ" property="czsj" jdbcType="VARCHAR" />
+    <result column="Operate" property="operate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GLYRZID, XM, DLZH, BM, IPDZ, CXSFZH, CXKSLX, QQFF, CZJG, CZSJ, Operate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_GLYRZ_INFO
+    where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_GLYRZ_INFO
+    where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.GlyrzInfo" >
+    insert into T_GLYRZ_INFO (GLYRZID, XM, DLZH, 
+      BM, IPDZ, CXSFZH, CXKSLX, 
+      QQFF, CZJG, CZSJ, Operate
+      )
+    values (#{glyrzid,jdbcType=NUMERIC}, #{xm,jdbcType=VARCHAR}, #{dlzh,jdbcType=VARCHAR}, 
+      #{bm,jdbcType=VARCHAR}, #{ipdz,jdbcType=VARCHAR}, #{cxsfzh,jdbcType=VARCHAR}, #{cxkslx,jdbcType=NUMERIC}, 
+      #{qqff,jdbcType=VARCHAR}, #{czjg,jdbcType=NUMERIC}, #{czsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.GlyrzInfo" >
+    insert into T_GLYRZ_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="glyrzid != null" >
+        GLYRZID,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="dlzh != null" >
+        DLZH,
+      </if>
+      <if test="bm != null" >
+        BM,
+      </if>
+      <if test="ipdz != null" >
+        IPDZ,
+      </if>
+      <if test="cxsfzh != null" >
+        CXSFZH,
+      </if>
+      <if test="cxkslx != null" >
+        CXKSLX,
+      </if>
+      <if test="qqff != null" >
+        QQFF,
+      </if>
+      <if test="czjg != null" >
+        CZJG,
+      </if>
+      <if test="czsj != null" >
+        CZSJ,
+      </if>
+      <if test="operate != null" >
+        Operate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="glyrzid != null" >
+        #{glyrzid,jdbcType=NUMERIC},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="dlzh != null" >
+        #{dlzh,jdbcType=VARCHAR},
+      </if>
+      <if test="bm != null" >
+        #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="ipdz != null" >
+        #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="cxsfzh != null" >
+        #{cxsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxkslx != null" >
+        #{cxkslx,jdbcType=NUMERIC},
+      </if>
+      <if test="qqff != null" >
+        #{qqff,jdbcType=VARCHAR},
+      </if>
+      <if test="czjg != null" >
+        #{czjg,jdbcType=NUMERIC},
+      </if>
+      <if test="czsj != null" >
+        #{czsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        #{operate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.GlyrzInfo" >
+    update T_GLYRZ_INFO
+    <set >
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="dlzh != null" >
+        DLZH = #{dlzh,jdbcType=VARCHAR},
+      </if>
+      <if test="bm != null" >
+        BM = #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="ipdz != null" >
+        IPDZ = #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="cxsfzh != null" >
+        CXSFZH = #{cxsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxkslx != null" >
+        CXKSLX = #{cxkslx,jdbcType=NUMERIC},
+      </if>
+      <if test="qqff != null" >
+        QQFF = #{qqff,jdbcType=VARCHAR},
+      </if>
+      <if test="czjg != null" >
+        CZJG = #{czjg,jdbcType=NUMERIC},
+      </if>
+      <if test="czsj != null" >
+        CZSJ = #{czsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        Operate = #{operate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.GlyrzInfo" >
+    update T_GLYRZ_INFO
+    set XM = #{xm,jdbcType=VARCHAR},
+      DLZH = #{dlzh,jdbcType=VARCHAR},
+      BM = #{bm,jdbcType=VARCHAR},
+      IPDZ = #{ipdz,jdbcType=VARCHAR},
+      CXSFZH = #{cxsfzh,jdbcType=VARCHAR},
+      CXKSLX = #{cxkslx,jdbcType=NUMERIC},
+      QQFF = #{qqff,jdbcType=VARCHAR},
+      CZJG = #{czjg,jdbcType=NUMERIC},
+      CZSJ = #{czsj,jdbcType=VARCHAR},
+      Operate = #{operate,jdbcType=VARCHAR}
+    where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
+  </update>
+</mapper>

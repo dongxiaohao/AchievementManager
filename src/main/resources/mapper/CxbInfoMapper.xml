@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.CxbInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.CxbInfo" >
+    <id column="CXID" property="cxid" jdbcType="NUMERIC" />
+    <result column="SJH" property="sjh" jdbcType="VARCHAR" />
+    <result column="KSLX" property="kslx" jdbcType="NUMERIC" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="KSNF" property="ksnf" jdbcType="VARCHAR" />
+    <result column="NNKSBS" property="nnksbs" jdbcType="NUMERIC" />
+    <result column="TJCXSJ" property="tjcxsj" jdbcType="VARCHAR" />
+    <result column="CXBZW" property="cxbzw" jdbcType="NUMERIC" />
+    <result column="FHCXSJ" property="fhcxsj" jdbcType="VARCHAR" />
+    <result column="CXJGZT" property="cxjgzt" jdbcType="NUMERIC" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="YHSFCK" property="yhsfck" jdbcType="NUMERIC" />
+    <result column="YHCKSJ" property="yhcksj" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CXID, SJH, KSLX, SFZH, XM, KSNF, NNKSBS, TJCXSJ, CXBZW, FHCXSJ, CXJGZT, YZBM, YHSFCK, 
+    YHCKSJ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where CXID = #{cxid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_CXB_INFO
+    where CXID = #{cxid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.CxbInfo" >
+    insert into T_CXB_INFO (CXID, SJH, KSLX, 
+      SFZH, XM, KSNF, NNKSBS, 
+      TJCXSJ, CXBZW, FHCXSJ, 
+      CXJGZT, YZBM, YHSFCK, 
+      YHCKSJ)
+    values (#{cxid,jdbcType=NUMERIC}, #{sjh,jdbcType=VARCHAR}, #{kslx,jdbcType=NUMERIC}, 
+      #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{ksnf,jdbcType=VARCHAR}, #{nnksbs,jdbcType=NUMERIC},
+      #{tjcxsj,jdbcType=VARCHAR}, #{cxbzw,jdbcType=NUMERIC}, #{fhcxsj,jdbcType=VARCHAR}, 
+      #{cxjgzt,jdbcType=NUMERIC}, #{yzbm,jdbcType=VARCHAR}, #{yhsfck,jdbcType=NUMERIC}, 
+      #{yhcksj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.CxbInfo" >
+    insert into T_CXB_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cxid != null" >
+        CXID,
+      </if>
+      <if test="sjh != null" >
+        SJH,
+      </if>
+      <if test="kslx != null" >
+        KSLX,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="ksnf != null" >
+        KSNF,
+      </if>
+      <if test="nnksbs != null" >
+        NNKSBS,
+      </if>
+      <if test="tjcxsj != null" >
+        TJCXSJ,
+      </if>
+      <if test="cxbzw != null" >
+        CXBZW,
+      </if>
+      <if test="fhcxsj != null" >
+        FHCXSJ,
+      </if>
+      <if test="cxjgzt != null" >
+        CXJGZT,
+      </if>
+      <if test="yzbm != null" >
+        YZBM,
+      </if>
+      <if test="yhsfck != null" >
+        YHSFCK,
+      </if>
+      <if test="yhcksj != null" >
+        YHCKSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cxid != null" >
+        #{cxid,jdbcType=NUMERIC},
+      </if>
+      <if test="sjh != null" >
+        #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="kslx != null" >
+        #{kslx,jdbcType=NUMERIC},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ksnf != null" >
+        #{ksnf,jdbcType=VARCHAR},
+      </if>
+      <if test="nnksbs != null" >
+        #{nnksbs,jdbcType=NUMERIC},
+      </if>
+      <if test="tjcxsj != null" >
+        #{tjcxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="cxbzw != null" >
+        #{cxbzw,jdbcType=NUMERIC},
+      </if>
+      <if test="fhcxsj != null" >
+        #{fhcxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="cxjgzt != null" >
+        #{cxjgzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsfck != null" >
+        #{yhsfck,jdbcType=NUMERIC},
+      </if>
+      <if test="yhcksj != null" >
+        #{yhcksj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.CxbInfo" >
+    update T_CXB_INFO
+    <set >
+      <if test="sjh != null" >
+        SJH = #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="kslx != null" >
+        KSLX = #{kslx,jdbcType=NUMERIC},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="ksnf != null" >
+        KSNF = #{ksnf,jdbcType=VARCHAR},
+      </if>
+      <if test="nnksbs != null" >
+        NNKSBS = #{nnksbs,jdbcType=NUMERIC},
+      </if>
+      <if test="tjcxsj != null" >
+        TJCXSJ = #{tjcxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="cxbzw != null" >
+        CXBZW = #{cxbzw,jdbcType=NUMERIC},
+      </if>
+      <if test="fhcxsj != null" >
+        FHCXSJ = #{fhcxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="cxjgzt != null" >
+        CXJGZT = #{cxjgzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsfck != null" >
+        YHSFCK = #{yhsfck,jdbcType=NUMERIC},
+      </if>
+      <if test="yhcksj != null" >
+        YHCKSJ = #{yhcksj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CXID = #{cxid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.CxbInfo" >
+    update T_CXB_INFO
+    set SJH = #{sjh,jdbcType=VARCHAR},
+      KSLX = #{kslx,jdbcType=NUMERIC},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      KSNF = #{ksnf,jdbcType=VARCHAR},
+      NNKSBS = #{nnksbs,jdbcType=NUMERIC},
+      TJCXSJ = #{tjcxsj,jdbcType=VARCHAR},
+      CXBZW = #{cxbzw,jdbcType=NUMERIC},
+      FHCXSJ = #{fhcxsj,jdbcType=VARCHAR},
+      CXJGZT = #{cxjgzt,jdbcType=NUMERIC},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      YHSFCK = #{yhsfck,jdbcType=NUMERIC},
+      YHCKSJ = #{yhcksj,jdbcType=VARCHAR}
+    where CXID = #{cxid,jdbcType=NUMERIC}
+  </update>
+  
+  <select id="queryBySjh" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR} ORDER BY CXID DESC
+  </select>
+  <update id="setYHStatus">
+    update T_CXB_INFO set
+    YHSFCK = #{yhsfck,jdbcType=NUMERIC},
+    YHCKSJ = #{yhcksj,jdbcType=VARCHAR}
+    where CXID=#{cxid,jdbcType=NUMERIC}
+  </update>
+
+  <select id="selectCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where
+    SJH = #{cxbInfo.sjh,jdbcType=VARCHAR} and
+    KSLX = #{cxbInfo.kslx,jdbcType=NUMERIC} and
+    SFZH = #{cxbInfo.sfzh,jdbcType=VARCHAR} and
+    XM = #{cxbInfo.xm,jdbcType=VARCHAR}
+    <if test="cxbInfo.ksnf != null" >
+    and KSNF = #{cxbInfo.ksnf,jdbcType=VARCHAR}
+    </if>
+    <if test="cxbInfo.nnksbs > 0" >
+    and  NNKSBS = #{cxbInfo.nnksbs,jdbcType=NUMERIC}
+    </if>
+    ORDER BY CXID DESC
+  </select>
+
+  <select id="queryBySjhWithOldResult" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+    AND CXBZW=1
+    AND YHSFCK=1
+    AND CXJGZT=1 ORDER BY CXID DESC
+  </select>
+
+  <select id="queryBySjhWithNewResult" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+    AND CXBZW=1
+    AND YHSFCK=0
+    AND CXJGZT=1 ORDER BY CXID DESC
+  </select>
+
+  <select id="queryBySjhWithQuerying" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+    AND CXBZW=0 ORDER BY CXID DESC
+  </select>
+
+  <select id="queryBySjhWithNoResult" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_CXB_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+    AND CXBZW=1
+    AND CXJGZT=0 ORDER BY CXID DESC
+  </select>
+  <select id="queryByKslx" resultMap="BaseResulMap">
+
+
+  </select>
+</mapper>

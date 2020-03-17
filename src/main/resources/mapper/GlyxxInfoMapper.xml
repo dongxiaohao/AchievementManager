@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.GlyxxInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.GlyxxInfo" >
+    <id column="GLYID" property="glyid" jdbcType="NUMERIC" />
+    <result column="GLYZH" property="glyzh" jdbcType="VARCHAR" />
+    <result column="MM" property="mm" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="GH" property="gh" jdbcType="VARCHAR" />
+    <result column="BM" property="bm" jdbcType="VARCHAR" />
+    <result column="YX" property="yx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GLYID, GLYZH, MM, SFZH, XM, GH, BM, YX
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_GLYXX_INFO
+    where GLYID = #{glyid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_GLYXX_INFO
+    where GLYID = #{glyid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.GlyxxInfo" >
+    insert into T_GLYXX_INFO (GLYID, GLYZH, MM, 
+      SFZH, XM, GH, BM, 
+      YX)
+    values (#{glyid,jdbcType=NUMERIC}, #{glyzh,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, 
+      #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{gh,jdbcType=VARCHAR}, #{bm,jdbcType=VARCHAR}, 
+      #{yx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.GlyxxInfo" >
+    insert into T_GLYXX_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="glyid != null" >
+        GLYID,
+      </if>
+      <if test="glyzh != null" >
+        GLYZH,
+      </if>
+      <if test="mm != null" >
+        MM,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="gh != null" >
+        GH,
+      </if>
+      <if test="bm != null" >
+        BM,
+      </if>
+      <if test="yx != null" >
+        YX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="glyid != null" >
+        #{glyid,jdbcType=NUMERIC},
+      </if>
+      <if test="glyzh != null" >
+        #{glyzh,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null" >
+        #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="bm != null" >
+        #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null" >
+        #{yx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.GlyxxInfo" >
+    update T_GLYXX_INFO
+    <set >
+      <if test="glyzh != null" >
+        GLYZH = #{glyzh,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        MM = #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null" >
+        GH = #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="bm != null" >
+        BM = #{bm,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null" >
+        YX = #{yx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GLYID = #{glyid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.GlyxxInfo" >
+    update T_GLYXX_INFO
+    set GLYZH = #{glyzh,jdbcType=VARCHAR},
+      MM = #{mm,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      GH = #{gh,jdbcType=VARCHAR},
+      BM = #{bm,jdbcType=VARCHAR},
+      YX = #{yx,jdbcType=VARCHAR}
+    where GLYID = #{glyid,jdbcType=NUMERIC}
+  </update>
+</mapper>

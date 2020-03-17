@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.DlrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.DlrzInfo" >
+    <id column="DLRZID" property="dlrzid" jdbcType="NUMERIC" />
+    <result column="SJH" property="sjh" jdbcType="VARCHAR" />
+    <result column="DLZH" property="dlzh" jdbcType="VARCHAR" />
+    <result column="DLFS" property="dlfs" jdbcType="NUMERIC" />
+    <result column="IPDZ" property="ipdz" jdbcType="VARCHAR" />
+    <result column="DLSJ" property="dlsj" jdbcType="VARCHAR" />
+    <result column="OPERATE" property="operate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DLRZID, SJH, DLZH, DLFS, IPDZ, DLSJ, OPERATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_DLRZ_INFO
+    where DLRZID = #{dlrzid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_DLRZ_INFO
+    where DLRZID = #{dlrzid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.DlrzInfo" >
+    insert into T_DLRZ_INFO (DLRZID, SJH, DLZH, 
+      DLFS, IPDZ, DLSJ, OPERATE
+      )
+    values (#{dlrzid,jdbcType=NUMERIC}, #{sjh,jdbcType=VARCHAR}, #{dlzh,jdbcType=VARCHAR}, 
+      #{dlfs,jdbcType=NUMERIC}, #{ipdz,jdbcType=VARCHAR}, #{dlsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.DlrzInfo" >
+    insert into T_DLRZ_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dlrzid != null" >
+        DLRZID,
+      </if>
+      <if test="sjh != null" >
+        SJH,
+      </if>
+      <if test="dlzh != null" >
+        DLZH,
+      </if>
+      <if test="dlfs != null" >
+        DLFS,
+      </if>
+      <if test="ipdz != null" >
+        IPDZ,
+      </if>
+      <if test="dlsj != null" >
+        DLSJ,
+      </if>
+      <if test="operate != null" >
+        OPERATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dlrzid != null" >
+        #{dlrzid,jdbcType=NUMERIC},
+      </if>
+      <if test="sjh != null" >
+        #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="dlzh != null" >
+        #{dlzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dlfs != null" >
+        #{dlfs,jdbcType=NUMERIC},
+      </if>
+      <if test="ipdz != null" >
+        #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="dlsj != null" >
+        #{dlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        #{operate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.DlrzInfo" >
+    update T_DLRZ_INFO
+    <set >
+      <if test="sjh != null" >
+        SJH = #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="dlzh != null" >
+        DLZH = #{dlzh,jdbcType=VARCHAR},
+      </if>
+      <if test="dlfs != null" >
+        DLFS = #{dlfs,jdbcType=NUMERIC},
+      </if>
+      <if test="ipdz != null" >
+        IPDZ = #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="dlsj != null" >
+        DLSJ = #{dlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        OPERATE = #{operate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DLRZID = #{dlrzid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.DlrzInfo" >
+    update T_DLRZ_INFO
+    set SJH = #{sjh,jdbcType=VARCHAR},
+      DLZH = #{dlzh,jdbcType=VARCHAR},
+      DLFS = #{dlfs,jdbcType=NUMERIC},
+      IPDZ = #{ipdz,jdbcType=VARCHAR},
+      DLSJ = #{dlsj,jdbcType=VARCHAR},
+      OPERATE = #{operate,jdbcType=VARCHAR}
+    where DLRZID = #{dlrzid,jdbcType=NUMERIC}
+  </update>
+  <select id="queryBySjh" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_DLRZ_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+  </select>
+</mapper>

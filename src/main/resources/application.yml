@@ -1,0 +1,37 @@
+spring:
+  jmx:
+    enabled: false
+  devtools:
+    restart:
+      enabled: false
+
+  datasource:
+    url: jdbc:oracle:thin:@219.216.64.198:1521:ORCL
+    #    url: jdbc:oracle:thin:@10.194.103.108:1521:ORCL
+    username: lnavs
+    #    password: lnzsksb
+    password: 123456
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    jmx-enabled: false
+    tomcat:  ## 单个数据库连接池,而且得写上tomcat的属性配置才可以生效
+      initial-size: 1
+      max-active: 20
+      ## when pool sweeper is enabled, extra idle connection will be closed
+      max-idle: 5
+      ## when idle connection > min-idle, poolSweeper will start to close
+      min-idle: 1
+jdbcType: oracle
+# 系统配置参数
+# 分页中每页显示的记录数
+initPageSize: 8
+supportExamination: # 支持的考试类型
+  defaultStartYear: 2000   # 默认开始年份
+  defaultPdfTemplate: default.ftl # 默认pdf模板
+  examinations:
+    # name 考试中文名称 scoreCols 每行显示几个成绩  engName 考试英文简写 code 考试编码  startYear 开始年份 stopYear 结束年份  timeList 考试月份集合使用;隔开  pdfTemplate pdf模板
+    - {name: 辽宁省普通高中学生学业水平考试, scoreCols: 2, engName: xysp, code: 15, startYear: -1, stopYear: -1, timeList: -1, pdfTemplate: xysp_pdf.ftl}
+    - {name: 普通高等学校招生全国统一考试, scoreCols: 1, engName: gk, code: 11, startYear: 2003, stopYear: -1, timeList: -1, pdfTemplate: gk_pdf.ftl}
+    - {name: 自学考试, scoreCols: 2, engName: zk, code: 18, startYear: -1, stopYear: -1, timeList: -1, pdfTemplate: zkcj_pdf.ftl}
+    - {name: 高等教育自学考试毕业证明, scoreCols: 1, engName: zkzs, code: 14, startYear: -1, stopYear: -1, timeList: -1, pdfTemplate: zkby_pdf.ftl}
+    - {name: 全国成人高校招生考试, scoreCols: 1, engName: crgk, code: 13, startYear: 2005, stopYear: -1, timeList: -1, pdfTemplate: crgk_pdf.ftl}
+    - {name: 辽宁省职业教育对口升学考试, scoreCols: 1, engName: dksx, code: 16, startYear: 2017, stopYear: -1, timeList: -1, pdfTemplate: dksx_pdf.ftl}

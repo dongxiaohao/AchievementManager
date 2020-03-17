@@ -1,0 +1,8 @@
+## ignore this file ##
+.idea/*
+logs/*
+target/*
+.project/*
+.classpath/*
+.settings/*
+*.iml

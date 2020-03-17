@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.YhxxInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.YhxxInfo" >
+    <id column="YHID" property="yhid" jdbcType="NUMERIC" />
+    <result column="SJH" property="sjh" jdbcType="VARCHAR" />
+    <result column="MM" property="mm" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="YHM" property="yhm" jdbcType="VARCHAR" />
+    <result column="YX" property="yx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    YHID, SJH, MM, SFZH, XM, YHM, YX
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_YHXX_INFO
+    where YHID = #{yhid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_YHXX_INFO
+    where YHID = #{yhid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.YhxxInfo" >
+    insert into T_YHXX_INFO (YHID, SJH, MM, 
+      SFZH, XM, YHM, YX
+      )
+    values (#{yhid,jdbcType=NUMERIC}, #{sjh,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, 
+      #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{yhm,jdbcType=VARCHAR}, #{yx,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.YhxxInfo" >
+    insert into T_YHXX_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhid != null" >
+        YHID,
+      </if>
+      <if test="sjh != null" >
+        SJH,
+      </if>
+      <if test="mm != null" >
+        MM,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="yhm != null" >
+        YHM,
+      </if>
+      <if test="yx != null" >
+        YX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhid != null" >
+        #{yhid,jdbcType=NUMERIC},
+      </if>
+      <if test="sjh != null" >
+        #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhm != null" >
+        #{yhm,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null" >
+        #{yx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.YhxxInfo" >
+    update T_YHXX_INFO
+    <set >
+      <if test="sjh != null" >
+        SJH = #{sjh,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        MM = #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhm != null" >
+        YHM = #{yhm,jdbcType=VARCHAR},
+      </if>
+      <if test="yx != null" >
+        YX = #{yx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YHID = #{yhid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.YhxxInfo" >
+    update T_YHXX_INFO
+    set SJH = #{sjh,jdbcType=VARCHAR},
+      MM = #{mm,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      YHM = #{yhm,jdbcType=VARCHAR},
+      YX = #{yx,jdbcType=VARCHAR}
+    where YHID = #{yhid,jdbcType=NUMERIC}
+  </update>
+  
+  <select id="selectBySJH" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_YHXX_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByYHM" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_YHXX_INFO
+    where YHM = #{yhm,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMMBySJH" resultType="java.lang.String" parameterType="java.lang.String" >
+    select MM
+    from T_YHXX_INFO
+    where SJH = #{sjh,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMMByYHM" resultType="java.lang.String" parameterType="java.lang.String" >
+    select MM
+    from T_YHXX_INFO
+    where YHM = #{yhm,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMMBySFZH" resultType="java.lang.String" parameterType="java.lang.String" >
+    select MM
+    from T_YHXX_INFO
+    where SFZH = #{sfzh,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectMMByYX" resultType="java.lang.String" parameterType="java.lang.String" >
+    select MM
+    from T_YHXX_INFO
+    where YX = #{yx,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectBySFZH" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_YHXX_INFO
+    where SFZH = #{sfzh,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByYX" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_YHXX_INFO
+    where YX = #{yx,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSJHbyYX" resultType="java.lang.String" parameterType="java.lang.String" >
+    select SJH
+    from T_YHXX_INFO
+    where YX = #{yx,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSJHbySFZH" resultType="java.lang.String" parameterType="java.lang.String" >
+    select SJH
+    from T_YHXX_INFO
+    where SFZH= #{sfzh,jdbcType=VARCHAR}
+  </select>
+  <select id="selectSJHbyYHM" resultType="java.lang.String" parameterType="java.lang.String" >
+    select SJH
+    from T_YHXX_INFO
+    where YHM = #{yhm,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

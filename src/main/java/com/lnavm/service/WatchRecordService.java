@@ -1,0 +1,19 @@
+package com.lnavm.service;
+
+import com.lnavm.pojo.CxbInfo;
+import com.lnavm.thirdutils.Page;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+@Service
+public interface WatchRecordService {
+    /**
+     *
+     * @param kslx
+     * @param starttime
+     * @param endtime
+     * @param order
+     * @return
+     */
+    List<CxbInfo> QueryRecoed(String kslx, String starttime, String endtime, String order ,String yhsjh, Page<CxbInfo> page);
+}

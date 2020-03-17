@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.ZkbysInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.ZkbysInfo" >
+    <id column="ZKBYBID" property="zkbybid" jdbcType="NUMERIC" />
+    <result column="ZKZH" property="zkzh" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="ZYDM" property="zydm" jdbcType="VARCHAR" />
+    <result column="ZYMC" property="zymc" jdbcType="VARCHAR" />
+    <result column="ZID" property="zid" jdbcType="VARCHAR" />
+    <result column="ZKYX" property="zkyx" jdbcType="VARCHAR" />
+    <result column="ZYCC" property="zycc" jdbcType="VARCHAR" />
+    <result column="BYSJ" property="bysj" jdbcType="VARCHAR" />
+    <result column="YZZT" property="yzzt" jdbcType="NUMERIC" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="YZSCSJ" property="yzscsj" jdbcType="VARCHAR" />
+    <result column="SFSCPDF" property="sfscpdf" jdbcType="NUMERIC" />
+    <result column="PDFTIME" property="pdftime" jdbcType="VARCHAR" />
+    <result column="PDFLJ" property="pdflj" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ZKBYBID, ZKZH, SFZH, XM, ZYDM, ZYMC, ZID, ZKYX, ZYCC, BYSJ, YZZT, YZBM, YZSCSJ, SFSCPDF, 
+    PDFTIME, PDFLJ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_ZK_BYS_INFO
+    where ZKBYBID = #{zkbybid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_ZK_BYS_INFO
+    where ZKBYBID = #{zkbybid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.ZkbysInfo" >
+    insert into T_ZK_BYS_INFO (ZKBYBID, ZKZH, SFZH, 
+      XM, ZYDM, ZYMC, ZID, 
+      ZKYX, ZYCC, BYSJ, YZZT, 
+      YZBM, YZSCSJ, SFSCPDF, 
+      PDFTIME, PDFLJ)
+    values (#{zkbybid,jdbcType=NUMERIC}, #{zkzh,jdbcType=VARCHAR}, #{sfzh,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{zydm,jdbcType=VARCHAR}, #{zymc,jdbcType=VARCHAR}, #{zid,jdbcType=VARCHAR}, 
+      #{zkyx,jdbcType=VARCHAR}, #{zycc,jdbcType=VARCHAR}, #{bysj,jdbcType=VARCHAR}, #{yzzt,jdbcType=NUMERIC}, 
+      #{yzbm,jdbcType=VARCHAR}, #{yzscsj,jdbcType=VARCHAR}, #{sfscpdf,jdbcType=NUMERIC}, 
+      #{pdftime,jdbcType=VARCHAR}, #{pdflj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.ZkbysInfo" >
+    insert into T_ZK_BYS_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="zkbybid != null" >
+        ZKBYBID,
+      </if>
+      <if test="zkzh != null" >
+        ZKZH,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="zydm != null" >
+        ZYDM,
+      </if>
+      <if test="zymc != null" >
+        ZYMC,
+      </if>
+      <if test="zid != null" >
+        ZID,
+      </if>
+      <if test="zkyx != null" >
+        ZKYX,
+      </if>
+      <if test="zycc != null" >
+        ZYCC,
+      </if>
+      <if test="bysj != null" >
+        BYSJ,
+      </if>
+      <if test="yzzt != null" >
+        YZZT,
+      </if>
+      <if test="yzbm != null" >
+        YZBM,
+      </if>
+      <if test="yzscsj != null" >
+        YZSCSJ,
+      </if>
+      <if test="sfscpdf != null" >
+        SFSCPDF,
+      </if>
+      <if test="pdftime != null" >
+        PDFTIME,
+      </if>
+      <if test="pdflj != null" >
+        PDFLJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="zkbybid != null" >
+        #{zkbybid,jdbcType=NUMERIC},
+      </if>
+      <if test="zkzh != null" >
+        #{zkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="zydm != null" >
+        #{zydm,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="zid != null" >
+        #{zid,jdbcType=VARCHAR},
+      </if>
+      <if test="zkyx != null" >
+        #{zkyx,jdbcType=VARCHAR},
+      </if>
+      <if test="zycc != null" >
+        #{zycc,jdbcType=VARCHAR},
+      </if>
+      <if test="bysj != null" >
+        #{bysj,jdbcType=VARCHAR},
+      </if>
+      <if test="yzzt != null" >
+        #{yzzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yzscsj != null" >
+        #{yzscsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfscpdf != null" >
+        #{sfscpdf,jdbcType=NUMERIC},
+      </if>
+      <if test="pdftime != null" >
+        #{pdftime,jdbcType=VARCHAR},
+      </if>
+      <if test="pdflj != null" >
+        #{pdflj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.ZkbysInfo" >
+    update T_ZK_BYS_INFO
+    <set >
+      <if test="zkzh != null" >
+        ZKZH = #{zkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="zydm != null" >
+        ZYDM = #{zydm,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        ZYMC = #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="zid != null" >
+        ZID = #{zid,jdbcType=VARCHAR},
+      </if>
+      <if test="zkyx != null" >
+        ZKYX = #{zkyx,jdbcType=VARCHAR},
+      </if>
+      <if test="zycc != null" >
+        ZYCC = #{zycc,jdbcType=VARCHAR},
+      </if>
+      <if test="bysj != null" >
+        BYSJ = #{bysj,jdbcType=VARCHAR},
+      </if>
+      <if test="yzzt != null" >
+        YZZT = #{yzzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yzscsj != null" >
+        YZSCSJ = #{yzscsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfscpdf != null" >
+        SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      </if>
+      <if test="pdftime != null" >
+        PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      </if>
+      <if test="pdflj != null" >
+        PDFLJ = #{pdflj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ZKBYBID = #{zkbybid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.ZkbysInfo" >
+    update T_ZK_BYS_INFO
+    set ZKZH = #{zkzh,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      ZYDM = #{zydm,jdbcType=VARCHAR},
+      ZYMC = #{zymc,jdbcType=VARCHAR},
+      ZID = #{zid,jdbcType=VARCHAR},
+      ZKYX = #{zkyx,jdbcType=VARCHAR},
+      ZYCC = #{zycc,jdbcType=VARCHAR},
+      BYSJ = #{bysj,jdbcType=VARCHAR},
+      YZZT = #{yzzt,jdbcType=NUMERIC},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      YZSCSJ = #{yzscsj,jdbcType=VARCHAR},
+      SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      PDFLJ = #{pdflj,jdbcType=VARCHAR}
+    where ZKBYBID = #{zkbybid,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updatePDFStatus" >
+    update T_ZK_BYS_INFO
+    set SFSCPDF = #{sfscpdf,jdbcType=NUMERIC}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByYZBM" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_ZK_BYS_INFO
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </select>
+  <update id="savePDF">
+    update T_ZK_BYS_INFO
+    set SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      PDFLJ = #{pdflj,jdbcType=VARCHAR}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+  <select id="getPDFLJ" resultType="java.lang.String" parameterType="java.lang.String" >
+  	select PDFLJ from T_ZK_BYS_INFO  where YZBM=#{yzbm,jdbcType=VARCHAR}
+  </select>
+  <update id="updateCheckStatus" >
+    update T_ZK_BYS_INFO
+    set YZZT = #{yzzt,jdbcType=NUMERIC}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+</mapper>

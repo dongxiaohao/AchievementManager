@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.XtrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.XtrzInfo" >
+    <id column="RZID" property="rzid" jdbcType="NUMERIC" />
+    <result column="YHIP" property="yhip" jdbcType="VARCHAR" />
+    <result column="YHSJH" property="yhsjh" jdbcType="VARCHAR" />
+    <result column="CXSFZH" property="cxsfzh" jdbcType="VARCHAR" />
+    <result column="CXKSLX" property="cxkslx" jdbcType="NUMERIC" />
+    <result column="FWURL" property="fwurl" jdbcType="VARCHAR" />
+    <result column="QQFF" property="qqff" jdbcType="VARCHAR" />
+    <result column="CZJG" property="czjg" jdbcType="NUMERIC" />
+    <result column="FWSJ" property="fwsj" jdbcType="VARCHAR" />
+    <result column="OPERATE" property="operate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RZID, YHIP, YHSJH, CXSFZH, CXKSLX, FWURL, QQFF, CZJG, FWSJ, OPERATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_XTRZ_INFO
+    where RZID = #{rzid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_XTRZ_INFO
+    where RZID = #{rzid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.XtrzInfo" >
+    insert into T_XTRZ_INFO (RZID, YHIP, YHSJH, 
+      CXSFZH, CXKSLX, FWURL, 
+      QQFF, CZJG, FWSJ, OPERATE
+      )
+    values (#{rzid,jdbcType=NUMERIC}, #{yhip,jdbcType=VARCHAR}, #{yhsjh,jdbcType=VARCHAR}, 
+      #{cxsfzh,jdbcType=VARCHAR}, #{cxkslx,jdbcType=NUMERIC}, #{fwurl,jdbcType=VARCHAR}, 
+      #{qqff,jdbcType=VARCHAR}, #{czjg,jdbcType=NUMERIC}, #{fwsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.XtrzInfo" >
+    insert into T_XTRZ_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rzid != null" >
+        RZID,
+      </if>
+      <if test="yhip != null" >
+        YHIP,
+      </if>
+      <if test="yhsjh != null" >
+        YHSJH,
+      </if>
+      <if test="cxsfzh != null" >
+        CXSFZH,
+      </if>
+      <if test="cxkslx != null" >
+        CXKSLX,
+      </if>
+      <if test="fwurl != null" >
+        FWURL,
+      </if>
+      <if test="qqff != null" >
+        QQFF,
+      </if>
+      <if test="czjg != null" >
+        CZJG,
+      </if>
+      <if test="fwsj != null" >
+        FWSJ,
+      </if>
+      <if test="operate != null" >
+        OPERATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rzid != null" >
+        #{rzid,jdbcType=NUMERIC},
+      </if>
+      <if test="yhip != null" >
+        #{yhip,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsjh != null" >
+        #{yhsjh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxsfzh != null" >
+        #{cxsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxkslx != null" >
+        #{cxkslx,jdbcType=NUMERIC},
+      </if>
+      <if test="fwurl != null" >
+        #{fwurl,jdbcType=VARCHAR},
+      </if>
+      <if test="qqff != null" >
+        #{qqff,jdbcType=VARCHAR},
+      </if>
+      <if test="czjg != null" >
+        #{czjg,jdbcType=NUMERIC},
+      </if>
+      <if test="fwsj != null" >
+        #{fwsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        #{operate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.XtrzInfo" >
+    update T_XTRZ_INFO
+    <set >
+      <if test="yhip != null" >
+        YHIP = #{yhip,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsjh != null" >
+        YHSJH = #{yhsjh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxsfzh != null" >
+        CXSFZH = #{cxsfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="cxkslx != null" >
+        CXKSLX = #{cxkslx,jdbcType=NUMERIC},
+      </if>
+      <if test="fwurl != null" >
+        FWURL = #{fwurl,jdbcType=VARCHAR},
+      </if>
+      <if test="qqff != null" >
+        QQFF = #{qqff,jdbcType=VARCHAR},
+      </if>
+      <if test="czjg != null" >
+        CZJG = #{czjg,jdbcType=NUMERIC},
+      </if>
+      <if test="fwsj != null" >
+        FWSJ = #{fwsj,jdbcType=VARCHAR},
+      </if>
+      <if test="operate != null" >
+        OPERATE = #{operate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RZID = #{rzid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.XtrzInfo" >
+    update T_XTRZ_INFO
+    set YHIP = #{yhip,jdbcType=VARCHAR},
+      YHSJH = #{yhsjh,jdbcType=VARCHAR},
+      CXSFZH = #{cxsfzh,jdbcType=VARCHAR},
+      CXKSLX = #{cxkslx,jdbcType=NUMERIC},
+      FWURL = #{fwurl,jdbcType=VARCHAR},
+      QQFF = #{qqff,jdbcType=VARCHAR},
+      CZJG = #{czjg,jdbcType=NUMERIC},
+      FWSJ = #{fwsj,jdbcType=VARCHAR},
+      OPERATE = #{operate,jdbcType=VARCHAR}
+    where RZID = #{rzid,jdbcType=NUMERIC}
+  </update>
+  <select id="queryByYhsjh" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_XTRZ_INFO
+    where YHSJH = #{yhsjh,jdbcType=VARCHAR}
+  </select>
+</mapper>

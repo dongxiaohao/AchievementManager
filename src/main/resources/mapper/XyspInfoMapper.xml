@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnavs.com.lnavm.dao.XyspInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavs.pojo.XyspInfo" >
+    <id column="XYSPID" property="xyspid" jdbcType="NUMERIC" />
+    <result column="KSH" property="ksh" jdbcType="VARCHAR" />
+    <result column="KSNF" property="ksnf" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="XJH" property="xjh" jdbcType="VARCHAR" />
+    <result column="BYZXMC" property="byzxmc" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="VARCHAR" />
+    <result column="DELETEBK" property="deletebk" jdbcType="VARCHAR" />
+    <result column="YZZT" property="yzzt" jdbcType="NUMERIC" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="YZSCSJ" property="yzscsj" jdbcType="VARCHAR" />
+    <result column="SFSCPDF" property="sfscpdf" jdbcType="NUMERIC" />
+    <result column="PDFTIME" property="pdftime" jdbcType="VARCHAR" />
+    <result column="PDFLJ" property="pdflj" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    XYSPID, KSH, KSNF, SFZH, XM, XJH, BYZXMC, SCORE, DELETEBK, YZZT, YZBM, YZSCSJ, SFSCPDF, 
+    PDFTIME, PDFLJ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_XYSP_INFO
+    where XYSPID = #{xyspid,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from T_XYSP_INFO
+    where XYSPID = #{xyspid,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="com.lnavs.pojo.XyspInfo" >
+    insert into T_XYSP_INFO (XYSPID, KSH, KSNF, 
+      SFZH, XM, XJH, BYZXMC, 
+      SCORE, DELETEBK, YZZT, 
+      YZBM, YZSCSJ, SFSCPDF, 
+      PDFTIME, PDFLJ)
+    values (#{xyspid,jdbcType=NUMERIC}, #{ksh,jdbcType=VARCHAR}, #{ksnf,jdbcType=VARCHAR}, 
+      #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{xjh,jdbcType=VARCHAR}, #{byzxmc,jdbcType=VARCHAR}, 
+      #{score,jdbcType=VARCHAR}, #{deletebk,jdbcType=VARCHAR}, #{yzzt,jdbcType=NUMERIC}, 
+      #{yzbm,jdbcType=VARCHAR}, #{yzscsj,jdbcType=VARCHAR}, #{sfscpdf,jdbcType=NUMERIC}, 
+      #{pdftime,jdbcType=VARCHAR}, #{pdflj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lnavs.pojo.XyspInfo" >
+    insert into T_XYSP_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xyspid != null" >
+        XYSPID,
+      </if>
+      <if test="ksh != null" >
+        KSH,
+      </if>
+      <if test="ksnf != null" >
+        KSNF,
+      </if>
+      <if test="sfzh != null" >
+        SFZH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="xjh != null" >
+        XJH,
+      </if>
+      <if test="byzxmc != null" >
+        BYZXMC,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="deletebk != null" >
+        DELETEBK,
+      </if>
+      <if test="yzzt != null" >
+        YZZT,
+      </if>
+      <if test="yzbm != null" >
+        YZBM,
+      </if>
+      <if test="yzscsj != null" >
+        YZSCSJ,
+      </if>
+      <if test="sfscpdf != null" >
+        SFSCPDF,
+      </if>
+      <if test="pdftime != null" >
+        PDFTIME,
+      </if>
+      <if test="pdflj != null" >
+        PDFLJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xyspid != null" >
+        #{xyspid,jdbcType=NUMERIC},
+      </if>
+      <if test="ksh != null" >
+        #{ksh,jdbcType=VARCHAR},
+      </if>
+      <if test="ksnf != null" >
+        #{ksnf,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xjh != null" >
+        #{xjh,jdbcType=VARCHAR},
+      </if>
+      <if test="byzxmc != null" >
+        #{byzxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="deletebk != null" >
+        #{deletebk,jdbcType=VARCHAR},
+      </if>
+      <if test="yzzt != null" >
+        #{yzzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yzscsj != null" >
+        #{yzscsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfscpdf != null" >
+        #{sfscpdf,jdbcType=NUMERIC},
+      </if>
+      <if test="pdftime != null" >
+        #{pdftime,jdbcType=VARCHAR},
+      </if>
+      <if test="pdflj != null" >
+        #{pdflj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.XyspInfo" >
+    update T_XYSP_INFO
+    <set >
+      <if test="ksh != null" >
+        KSH = #{ksh,jdbcType=VARCHAR},
+      </if>
+      <if test="ksnf != null" >
+        KSNF = #{ksnf,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null" >
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="xjh != null" >
+        XJH = #{xjh,jdbcType=VARCHAR},
+      </if>
+      <if test="byzxmc != null" >
+        BYZXMC = #{byzxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="deletebk != null" >
+        DELETEBK = #{deletebk,jdbcType=VARCHAR},
+      </if>
+      <if test="yzzt != null" >
+        YZZT = #{yzzt,jdbcType=NUMERIC},
+      </if>
+      <if test="yzbm != null" >
+        YZBM = #{yzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yzscsj != null" >
+        YZSCSJ = #{yzscsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sfscpdf != null" >
+        SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      </if>
+      <if test="pdftime != null" >
+        PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      </if>
+      <if test="pdflj != null" >
+        PDFLJ = #{pdflj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XYSPID = #{xyspid,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.XyspInfo" >
+    update T_XYSP_INFO
+    set KSH = #{ksh,jdbcType=VARCHAR},
+      KSNF = #{ksnf,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      XJH = #{xjh,jdbcType=VARCHAR},
+      BYZXMC = #{byzxmc,jdbcType=VARCHAR},
+      SCORE = #{score,jdbcType=VARCHAR},
+      DELETEBK = #{deletebk,jdbcType=VARCHAR},
+      YZZT = #{yzzt,jdbcType=NUMERIC},
+      YZBM = #{yzbm,jdbcType=VARCHAR},
+      YZSCSJ = #{yzscsj,jdbcType=VARCHAR},
+      SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      PDFLJ = #{pdflj,jdbcType=VARCHAR}
+    where XYSPID = #{xyspid,jdbcType=NUMERIC}
+  </update>
+  
+  <update id="updatePDFStatus" >
+    update T_XYSP_INFO
+    set SFSCPDF = #{sfscpdf,jdbcType=NUMERIC}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectByYZBM" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from T_XYSP_INFO
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </select>
+  <update id="savePDF">
+    update T_XYSP_INFO
+    set SFSCPDF = #{sfscpdf,jdbcType=NUMERIC},
+      PDFTIME = #{pdftime,jdbcType=VARCHAR},
+      PDFLJ = #{pdflj,jdbcType=VARCHAR}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+  <select id="getPDFLJ" resultType="java.lang.String" parameterType="java.lang.String" >
+  	select PDFLJ from T_XYSP_INFO  where YZBM=#{yzbm,jdbcType=VARCHAR}
+  </select>
+  <update id="updateCheckStatus" >
+    update T_XYSP_INFO
+    set YZZT = #{yzzt,jdbcType=NUMERIC}
+    where YZBM = #{yzbm,jdbcType=VARCHAR}
+  </update>
+</mapper>
