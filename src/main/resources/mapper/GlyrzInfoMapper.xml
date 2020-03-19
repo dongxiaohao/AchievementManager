@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.GlyrzInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.GlyrzInfo" >
+<mapper namespace="com.lnavm.dao.GlyrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.GlyrzInfo" >
     <id column="GLYRZID" property="glyrzid" jdbcType="NUMERIC" />
     <result column="XM" property="xm" jdbcType="VARCHAR" />
     <result column="DLZH" property="dlzh" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
     delete from T_GLYRZ_INFO
     where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.GlyrzInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.GlyrzInfo" >
     insert into T_GLYRZ_INFO (GLYRZID, XM, DLZH, 
       BM, IPDZ, CXSFZH, CXKSLX, 
       QQFF, CZJG, CZSJ, Operate
@@ -37,7 +37,7 @@
       #{qqff,jdbcType=VARCHAR}, #{czjg,jdbcType=NUMERIC}, #{czsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.GlyrzInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.GlyrzInfo" >
     insert into T_GLYRZ_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="glyrzid != null" >
@@ -110,7 +110,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.GlyrzInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.GlyrzInfo" >
     update T_GLYRZ_INFO
     <set >
       <if test="xm != null" >
@@ -146,7 +146,7 @@
     </set>
     where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.GlyrzInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.GlyrzInfo" >
     update T_GLYRZ_INFO
     set XM = #{xm,jdbcType=VARCHAR},
       DLZH = #{dlzh,jdbcType=VARCHAR},

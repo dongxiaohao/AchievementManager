@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.ZkkscjInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.ZkkscjInfo" >
+<mapper namespace="com.lnavm.dao.ZkkscjInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.ZkkscjInfo" >
     <id column="ZKCJID" property="zkcjid" jdbcType="NUMERIC" />
     <result column="ZKZH" property="zkzh" jdbcType="VARCHAR" />
     <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
@@ -27,7 +27,7 @@
     delete from T_ZK_KSCJ_INFO
     where ZKCJID = #{zkcjid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.ZkkscjInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.ZkkscjInfo" >
     insert into T_ZK_KSCJ_INFO (ZKCJID, ZKZH, SFZH, 
       XM, SCORE, YZZT, YZBM, 
       YZSCSJ, SFSCPDF, PDFTIME, 
@@ -37,7 +37,7 @@
       #{yzscsj,jdbcType=VARCHAR}, #{sfscpdf,jdbcType=NUMERIC}, #{pdftime,jdbcType=VARCHAR}, 
       #{pdflj,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.ZkkscjInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.ZkkscjInfo" >
     insert into T_ZK_KSCJ_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="zkcjid != null" >
@@ -110,7 +110,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.ZkkscjInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.ZkkscjInfo" >
     update T_ZK_KSCJ_INFO
     <set >
       <if test="zkzh != null" >
@@ -146,7 +146,7 @@
     </set>
     where ZKCJID = #{zkcjid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.ZkkscjInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.ZkkscjInfo" >
     update T_ZK_KSCJ_INFO
     set ZKZH = #{zkzh,jdbcType=VARCHAR},
       SFZH = #{sfzh,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.CrgkInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.CrgkInfo" >
+<mapper namespace="com.lnavm.dao.CrgkInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.CrgkInfo" >
     <id column="CRGKID" property="crgkid" jdbcType="NUMERIC" />
     <result column="KSH" property="ksh" jdbcType="VARCHAR" />
     <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
     delete from T_CRGK_INFO
     where CRGKID = #{crgkid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.CrgkInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.CrgkInfo" >
     insert into T_CRGK_INFO (CRGKID, KSH, SFZH, 
       XM, KSNF, SCORE, YZZT, 
       YZBM, YZSCSJ, SFSCPDF, 
@@ -38,7 +38,7 @@
       #{yzbm,jdbcType=VARCHAR}, #{yzscsj,jdbcType=VARCHAR}, #{sfscpdf,jdbcType=NUMERIC}, 
       #{pdftime,jdbcType=VARCHAR}, #{pdflj,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.CrgkInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.CrgkInfo" >
     insert into T_CRGK_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="crgkid != null" >
@@ -117,7 +117,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.CrgkInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.CrgkInfo" >
     update T_CRGK_INFO
     <set >
       <if test="ksh != null" >
@@ -156,7 +156,7 @@
     </set>
     where CRGKID = #{crgkid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.CrgkInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.CrgkInfo" >
     update T_CRGK_INFO
     set KSH = #{ksh,jdbcType=VARCHAR},
       SFZH = #{sfzh,jdbcType=VARCHAR},

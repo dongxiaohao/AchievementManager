@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/")
+    @RequestMapping("/service")
     public ModelAndView QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
         //数据校验输入是否符合规则
         // if(SfzhorSjh.length()!=0 || SfzhorSjh.)
@@ -60,7 +60,7 @@ public class UserController {
      * @param Userid
      * @return
      */
-    @RequestMapping("/")
+    @RequestMapping("/a")
     public Resultentity<String> BanUser(String Userid){
 
         return null;
@@ -70,7 +70,7 @@ public class UserController {
      * @param Userid
      * @return
      */
-    @RequestMapping("/")
+    @RequestMapping("/b")
     public Resultentity<String> UnbanUser(String Userid){
         return null;
     }

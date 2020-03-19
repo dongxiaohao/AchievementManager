@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.CxbInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.CxbInfo" >
+<mapper namespace="com.lnavm.dao.CxbInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.CxbInfo" >
     <id column="CXID" property="cxid" jdbcType="NUMERIC" />
     <result column="SJH" property="sjh" jdbcType="VARCHAR" />
     <result column="KSLX" property="kslx" jdbcType="NUMERIC" />
@@ -31,7 +31,7 @@
     delete from T_CXB_INFO
     where CXID = #{cxid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.CxbInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.CxbInfo" >
     insert into T_CXB_INFO (CXID, SJH, KSLX, 
       SFZH, XM, KSNF, NNKSBS, 
       TJCXSJ, CXBZW, FHCXSJ, 
@@ -43,7 +43,7 @@
       #{cxjgzt,jdbcType=NUMERIC}, #{yzbm,jdbcType=VARCHAR}, #{yhsfck,jdbcType=NUMERIC}, 
       #{yhcksj,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.CxbInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.CxbInfo" >
     insert into T_CXB_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="cxid != null" >
@@ -134,7 +134,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.CxbInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.CxbInfo" >
     update T_CXB_INFO
     <set >
       <if test="sjh != null" >
@@ -179,7 +179,7 @@
     </set>
     where CXID = #{cxid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.CxbInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.CxbInfo" >
     update T_CXB_INFO
     set SJH = #{sjh,jdbcType=VARCHAR},
       KSLX = #{kslx,jdbcType=NUMERIC},

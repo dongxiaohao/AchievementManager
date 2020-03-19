@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.DlrzInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.DlrzInfo" >
+<mapper namespace="com.lnavm.dao.DlrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.DlrzInfo" >
     <id column="DLRZID" property="dlrzid" jdbcType="NUMERIC" />
     <result column="SJH" property="sjh" jdbcType="VARCHAR" />
     <result column="DLZH" property="dlzh" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from T_DLRZ_INFO
     where DLRZID = #{dlrzid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.DlrzInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.DlrzInfo" >
     insert into T_DLRZ_INFO (DLRZID, SJH, DLZH, 
       DLFS, IPDZ, DLSJ, OPERATE
       )
@@ -31,7 +31,7 @@
       #{dlfs,jdbcType=NUMERIC}, #{ipdz,jdbcType=VARCHAR}, #{dlsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.DlrzInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.DlrzInfo" >
     insert into T_DLRZ_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="dlrzid != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.DlrzInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.DlrzInfo" >
     update T_DLRZ_INFO
     <set >
       <if test="sjh != null" >
@@ -104,7 +104,7 @@
     </set>
     where DLRZID = #{dlrzid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.DlrzInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.DlrzInfo" >
     update T_DLRZ_INFO
     set SJH = #{sjh,jdbcType=VARCHAR},
       DLZH = #{dlzh,jdbcType=VARCHAR},

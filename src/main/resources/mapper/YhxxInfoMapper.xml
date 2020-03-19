@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.YhxxInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.YhxxInfo" >
+<mapper namespace="com.lnavm.dao.YhxxInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.YhxxInfo" >
     <id column="YHID" property="yhid" jdbcType="NUMERIC" />
     <result column="SJH" property="sjh" jdbcType="VARCHAR" />
     <result column="MM" property="mm" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from T_YHXX_INFO
     where YHID = #{yhid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.YhxxInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.YhxxInfo" >
     insert into T_YHXX_INFO (YHID, SJH, MM, 
       SFZH, XM, YHM, YX
       )
@@ -31,7 +31,7 @@
       #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{yhm,jdbcType=VARCHAR}, #{yx,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.YhxxInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.YhxxInfo" >
     insert into T_YHXX_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="yhid != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.YhxxInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.YhxxInfo" >
     update T_YHXX_INFO
     <set >
       <if test="sjh != null" >
@@ -104,7 +104,7 @@
     </set>
     where YHID = #{yhid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.YhxxInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.YhxxInfo" >
     update T_YHXX_INFO
     set SJH = #{sjh,jdbcType=VARCHAR},
       MM = #{mm,jdbcType=VARCHAR},

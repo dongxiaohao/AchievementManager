@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.XtrzInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.XtrzInfo" >
+<mapper namespace="com.lnavm.dao.XtrzInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.XtrzInfo" >
     <id column="RZID" property="rzid" jdbcType="NUMERIC" />
     <result column="YHIP" property="yhip" jdbcType="VARCHAR" />
     <result column="YHSJH" property="yhsjh" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from T_XTRZ_INFO
     where RZID = #{rzid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.XtrzInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.XtrzInfo" >
     insert into T_XTRZ_INFO (RZID, YHIP, YHSJH, 
       CXSFZH, CXKSLX, FWURL, 
       QQFF, CZJG, FWSJ, OPERATE
@@ -36,7 +36,7 @@
       #{qqff,jdbcType=VARCHAR}, #{czjg,jdbcType=NUMERIC}, #{fwsj,jdbcType=VARCHAR}, #{operate,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.XtrzInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.XtrzInfo" >
     insert into T_XTRZ_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="rzid != null" >
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.XtrzInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.XtrzInfo" >
     update T_XTRZ_INFO
     <set >
       <if test="yhip != null" >
@@ -136,7 +136,7 @@
     </set>
     where RZID = #{rzid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.XtrzInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.XtrzInfo" >
     update T_XTRZ_INFO
     set YHIP = #{yhip,jdbcType=VARCHAR},
       YHSJH = #{yhsjh,jdbcType=VARCHAR},

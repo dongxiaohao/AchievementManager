@@ -354,7 +354,7 @@
 <!--            &lt;!&ndash;<artifactId>spring-boot-maven-plugin</artifactId>&ndash;&gt;-->
 <!--            &lt;!&ndash;<configuration>&ndash;&gt;-->
 <!--            &lt;!&ndash;<fork>true</fork>&ndash;&gt;-->
-<!--            &lt;!&ndash;<mainClass>com.lnavs.LnAvsApplication</mainClass>&ndash;&gt;-->
+<!--            &lt;!&ndash;<mainClass>com.lnavm.lnavmApplication</mainClass>&ndash;&gt;-->
 <!--            &lt;!&ndash;</configuration>&ndash;&gt;-->
 <!--            &lt;!&ndash;<executions>&ndash;&gt;-->
 <!--            &lt;!&ndash;<execution>&ndash;&gt;-->

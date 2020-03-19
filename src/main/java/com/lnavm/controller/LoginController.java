@@ -21,7 +21,7 @@ public class LoginController {
     adminService adminService;
 
     @ResponseBody
-    @RequestMapping("/")
+    @RequestMapping("/l")
     public Resultentity<String> Loginin(String username, String pawassord, HttpSession session, HttpServletRequest request ){
         //清除之前的session,避免状态的混乱
         session.removeAttribute(Constant.LOGIN_ADMIN);

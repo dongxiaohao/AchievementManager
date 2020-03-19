@@ -26,7 +26,7 @@ public class WatchRecordController {
 
 
     @ResponseBody
-    @RequestMapping("/")
+    @RequestMapping("/record")
     public ModelAndView getRecord(String kslx, String starttime, String endtime, String order,String yhsjh ,HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
         // 数据类型处理，转变为符合数据库中的存储类型
 

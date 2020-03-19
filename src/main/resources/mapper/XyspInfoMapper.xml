@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.XyspInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.XyspInfo" >
+<mapper namespace="com.lnavm.dao.XyspInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.XyspInfo" >
     <id column="XYSPID" property="xyspid" jdbcType="NUMERIC" />
     <result column="KSH" property="ksh" jdbcType="VARCHAR" />
     <result column="KSNF" property="ksnf" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
     delete from T_XYSP_INFO
     where XYSPID = #{xyspid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.XyspInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.XyspInfo" >
     insert into T_XYSP_INFO (XYSPID, KSH, KSNF, 
       SFZH, XM, XJH, BYZXMC, 
       SCORE, DELETEBK, YZZT, 
@@ -44,7 +44,7 @@
       #{yzbm,jdbcType=VARCHAR}, #{yzscsj,jdbcType=VARCHAR}, #{sfscpdf,jdbcType=NUMERIC}, 
       #{pdftime,jdbcType=VARCHAR}, #{pdflj,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.XyspInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.XyspInfo" >
     insert into T_XYSP_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="xyspid != null" >
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.XyspInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.XyspInfo" >
     update T_XYSP_INFO
     <set >
       <if test="ksh != null" >
@@ -189,7 +189,7 @@
     </set>
     where XYSPID = #{xyspid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.XyspInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.XyspInfo" >
     update T_XYSP_INFO
     set KSH = #{ksh,jdbcType=VARCHAR},
       KSNF = #{ksnf,jdbcType=VARCHAR},

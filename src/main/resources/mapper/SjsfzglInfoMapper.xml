@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.SjsfzglInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.SjsfzglInfo" >
+<mapper namespace="com.lnavm.dao.SjsfzglInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.SjsfzglInfo" >
     <id column="GLID" property="glid" jdbcType="NUMERIC" />
     <result column="SJH" property="sjh" jdbcType="VARCHAR" />
     <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
@@ -20,20 +20,20 @@
     delete from T_SJSFZGL_INFO
     where GLID = #{glid,jdbcType=NUMERIC}
   </delete>
-  <delete id="deleteBySJHAndSFZH" parameterType="com.lnavs.pojo.SjsfzglInfo" >
+  <delete id="deleteBySJHAndSFZH" parameterType="com.lnavm.pojo.SjsfzglInfo" >
     delete from T_SJSFZGL_INFO
     where SJH = #{sjh, jdbcType=VARCHAR} AND
     SFZH = #{sfzh, jdbcType=VARCHAR}
 
 
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.SjsfzglInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.SjsfzglInfo" >
     insert into T_SJSFZGL_INFO (GLID, SJH, SFZH, XM
       )
     values (#{glid,jdbcType=NUMERIC}, #{sjh,jdbcType=VARCHAR}, #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.SjsfzglInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.SjsfzglInfo" >
     insert into T_SJSFZGL_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="glid != null" >
@@ -58,7 +58,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.SjsfzglInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.SjsfzglInfo" >
     update T_SJSFZGL_INFO
     <set >
       <if test="sjh != null" >

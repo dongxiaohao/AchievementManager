@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lnavs.com.lnavm.dao.GlyxxInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.lnavs.pojo.GlyxxInfo" >
+<mapper namespace="com.lnavm.dao.GlyxxInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lnavm.pojo.GlyxxInfo" >
     <id column="GLYID" property="glyid" jdbcType="NUMERIC" />
     <result column="GLYZH" property="glyzh" jdbcType="VARCHAR" />
     <result column="MM" property="mm" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
     delete from T_GLYXX_INFO
     where GLYID = #{glyid,jdbcType=NUMERIC}
   </delete>
-  <insert id="insert" parameterType="com.lnavs.pojo.GlyxxInfo" >
+  <insert id="insert" parameterType="com.lnavm.pojo.GlyxxInfo" >
     insert into T_GLYXX_INFO (GLYID, GLYZH, MM, 
       SFZH, XM, GH, BM, 
       YX)
@@ -32,7 +32,7 @@
       #{sfzh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{gh,jdbcType=VARCHAR}, #{bm,jdbcType=VARCHAR}, 
       #{yx,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.lnavs.pojo.GlyxxInfo" >
+  <insert id="insertSelective" parameterType="com.lnavm.pojo.GlyxxInfo" >
     insert into T_GLYXX_INFO
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="glyid != null" >
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lnavs.pojo.GlyxxInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lnavm.pojo.GlyxxInfo" >
     update T_GLYXX_INFO
     <set >
       <if test="glyzh != null" >
@@ -114,7 +114,7 @@
     </set>
     where GLYID = #{glyid,jdbcType=NUMERIC}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lnavs.pojo.GlyxxInfo" >
+  <update id="updateByPrimaryKey" parameterType="com.lnavm.pojo.GlyxxInfo" >
     update T_GLYXX_INFO
     set GLYZH = #{glyzh,jdbcType=VARCHAR},
       MM = #{mm,jdbcType=VARCHAR},
