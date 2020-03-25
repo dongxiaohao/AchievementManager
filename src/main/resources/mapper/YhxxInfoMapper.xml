@@ -10,8 +10,22 @@
     <result column="YHM" property="yhm" jdbcType="VARCHAR" />
     <result column="YX" property="yx" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="YhRecordMap" type="com.lnavm.pojo.YhrecordInfo" >
+    <id column="YHID" property="yhid" jdbcType="NUMERIC" />
+    <result column="SJH" property="sjh" jdbcType="VARCHAR" />
+    <result column="MM" property="mm" jdbcType="VARCHAR" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="YHM" property="yhm" jdbcType="VARCHAR" />
+    <result column="YX" property="yx" jdbcType="VARCHAR" />
+    <result column="YHZTID" property="yhztid" jdbcType="NUMERIC" />
+    <result column="ZTBZ" property="ztbz" jdbcType="NUMERIC" />
+  </resultMap>
   <sql id="Base_Column_List" >
     YHID, SJH, MM, SFZH, XM, YHM, YX
+  </sql>
+  <sql id="Record_Column_List" >
+    YHID, SJH, MM, SFZH, XM, YHM, YX, T_YHZT_INFO.YHZTID ,T_YHZT_INFO.ZTBZ,
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
     select 
@@ -183,5 +197,16 @@
     from T_YHXX_INFO
     where YHM = #{yhm,jdbcType=VARCHAR}
   </select>
-
+<select id="selectAll" resultMap="YhRecordMap">
+  select
+  <include refid="Record_Column_List"></include>
+  from T_YHZT_INFO,T_YHXX_INFO
+  where <if test="sjh != null">
+    SJH = #{sjh,jdbcType=VARCHAR} and
+</if>
+<if test="sfzh != null">
+  SFZH = #{sfzh,jdbcType=VARCHAR} and
+</if>
+T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
+</select>
 </mapper>

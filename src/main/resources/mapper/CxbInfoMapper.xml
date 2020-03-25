@@ -17,9 +17,29 @@
     <result column="YHSFCK" property="yhsfck" jdbcType="NUMERIC" />
     <result column="YHCKSJ" property="yhcksj" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="RecordResultMap" type="com.lnavm.pojo.CxRecord">
+    <id column="CXID" property="cxid" jdbcType="NUMERIC" />
+    <result column="SJH" property="sjh" jdbcType="VARCHAR" />
+    <result column="KSLX" property="kslx" jdbcType="NUMERIC" />
+    <result column="SFZH" property="sfzh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="KSNF" property="ksnf" jdbcType="VARCHAR" />
+    <result column="TJCXSJ" property="tjcxsj" jdbcType="VARCHAR" />
+    <result column="CXBZW" property="cxbzw" jdbcType="NUMERIC" />
+    <result column="FHCXSJ" property="fhcxsj" jdbcType="VARCHAR" />
+    <result column="CXJGZT" property="cxjgzt" jdbcType="NUMERIC" />
+    <result column="YZBM" property="yzbm" jdbcType="VARCHAR" />
+    <result column="YHIP" property="yhip" jdbcType="VARCHAR" />
+    <result column="CZJG" property="czjg" jdbcType="NUMERIC" />
+    <result column="FWSJ" property="fwsj" jdbcType="VARCHAR" />
+    <result column="OPERATE" property="operate" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     CXID, SJH, KSLX, SFZH, XM, KSNF, NNKSBS, TJCXSJ, CXBZW, FHCXSJ, CXJGZT, YZBM, YHSFCK, 
     YHCKSJ
+  </sql>
+  <sql id="Record_Column_List" >
+    CXID, SJH, KSLX, SFZH, XM, KSNF, TJCXSJ, CXBZW, FHCXSJ, CXJGZT, T_XTRT_INFO.YHIP,T_XTRT_INFO.CZJG, T_XTRT_INFO.FWSJ, T_XTRT_INFO.OPERATE
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
     select 
@@ -264,8 +284,24 @@
     AND CXBZW=1
     AND CXJGZT=0 ORDER BY CXID DESC
   </select>
-  <select id="queryByKslx" resultMap="BaseResulMap">
-
+  <select id="queryByKslx" resultMap="RecordResultMap">
+    select
+    <include refid="Record_Column_List"></include>
+    from T_CXB_INFO,T_XTRZ_INFO
+    where
+    <if test="kslx != null">
+        T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
+    </if>
+    <if test="yhsjh != null">
+        T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
+    </if>
+    <if test="starttime != null">
+        T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR} and
+    </if>
+    <if test="endtime != null">
+        T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR} AND
+    </if>
+    T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH;
 
   </select>
 </mapper>

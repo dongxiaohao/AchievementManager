@@ -20,7 +20,7 @@ public interface GlyxxInfoMapper {
 
     int updateByPrimaryKey(GlyxxInfo record);
 
-    String selectPASSByGLYM(@Param("glyzh") String glyzh);
+    String selectPASSByGLYM(@Param("selectPASSByGLYM") String glyzh);
 
     GlyxxInfo selectByGLYM(@Param("glyzh") String glyzh);
 

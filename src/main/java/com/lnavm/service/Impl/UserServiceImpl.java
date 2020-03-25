@@ -1,19 +1,27 @@
 package com.lnavm.service.Impl;
 
 import com.lnavm.dao.YhxxInfoMapper;
+import com.lnavm.dao.YhztInfoMapper;
 import com.lnavm.entity.Resultentity;
+import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.pojo.YhxxInfo;
+import com.lnavm.pojo.YhztInfo;
 import com.lnavm.service.UserService;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     YhxxInfoMapper yhxxInfoMapper;
+    @Autowired
+    YhztInfoMapper yhztInfoMapper;
 
     /**
      *
@@ -22,14 +30,16 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public List<YhxxInfo> QueryUser(String SfzhorSjh, Page<YhxxInfo> page) {
-        List<YhxxInfo> result=new ArrayList<>();
+    public List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page) {
+        List<YhrecordInfo> result=new ArrayList<>();
         if(SfzhorSjh.length()==0 || SfzhorSjh.equals("")){
-            result=yhxxInfoMapper.selectAll(page);
+            result=yhxxInfoMapper.selectUserBysjh(page,null,null);
         }else if(SfzhorSjh.length()== 11){
-            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
+            result=yhxxInfoMapper.selectUserBysjh(page,SfzhorSjh,null);
+//            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
         }else if(SfzhorSjh.length()==15 || SfzhorSjh.length()==18){
-            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
+            result=yhxxInfoMapper.selectUserBysjh(page,null,SfzhorSjh);
+//            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
         }
 
         return result;
@@ -78,7 +88,38 @@ public class UserServiceImpl implements UserService {
             case ERROR:
                 resultentity.setMessage(Status.ERROR_MAG);
                 break;
+            case FAIL_BAN:
+                resultentity.setMessage(Status.FAIL_BAN_MAG);
         }
         return resultentity;
+    }
+
+    @Override
+    public Status updataUserBan(String yhid, int Banbz) {
+        try {
+            if (yhztInfoMapper.selectZTByYHID(new BigDecimal(yhid)) == null) {
+                if (insertYHZT(new BigDecimal(yhid), Banbz) > 0) {
+                    return Status.OK;
+                } else
+                    return Status.FAIL_BAN;
+            }else {
+                if (yhztInfoMapper.updataZTBYYHIH(new BigDecimal(yhid),Banbz)>0)
+                    return Status.OK;
+                return Status.FAIL_BAN;
+            }
+        }catch (Exception e){
+            return Status.ERROR;
+        }
+    }
+
+    @Override
+    public int insertYHZT(BigDecimal yhid,int Banbz) {
+        YhztInfo yhztInfo = new YhztInfo();
+        yhztInfo.setYhid(yhid);
+        yhztInfo.setZtbz(Banbz);
+        System.out.println(yhid);
+        if(yhztInfoMapper.insertSelective(yhztInfo)>0)
+            return 1;
+        return 0;
     }
 }

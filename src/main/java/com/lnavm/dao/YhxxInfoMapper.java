@@ -1,5 +1,6 @@
 package com.lnavm.dao;
 
+import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.pojo.YhxxInfo;
 import com.lnavm.thirdutils.Page;
 import org.apache.ibatis.annotations.Param;
@@ -41,6 +42,10 @@ public interface YhxxInfoMapper {
     String selectSJHbyYX(@Param("yx") String yx);
 
     String selectSJHbyYHM(@Param("yhm") String yhm);
-    List<YhxxInfo> selectAll(Page<YhxxInfo> page);
-    int updateSJHbyYHID(@Param("yhid") String yhid,@Param("sjh") String sjh);
+
+    List<YhrecordInfo> selectAll(Page<YhxxInfo> page);
+
+    List<YhrecordInfo> selectUserBysjh(Page<YhrecordInfo> page,@Param("sjh") String sjh, @Param("sfzh") String sfzh);
+
+    int updateSJHbyYHID(@Param("yhid") String yhid, @Param("sjh") String sjh);
 }

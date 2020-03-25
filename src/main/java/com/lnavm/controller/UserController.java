@@ -2,6 +2,7 @@ package com.lnavm.controller;
 
 import com.lnavm.entity.Resultentity;
 import com.lnavm.pojo.CxbInfo;
+import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.service.UserService;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
@@ -28,7 +29,7 @@ public class UserController {
 
         //如果符合进行查询
         Page page = new Page<>(request, response);
-        List<CxbInfo> list =userService.QueryUser(SfzhorSjh,page);
+        List<YhrecordInfo> list =userService.QueryUser(SfzhorSjh,page);
         //判断是否存在相应用户
 
         page.initialize();
@@ -60,19 +61,22 @@ public class UserController {
      * @param Userid
      * @return
      */
-    @RequestMapping("/a")
+    @RequestMapping("/ban")
     public Resultentity<String> BanUser(String Userid){
-
-        return null;
+        Status status=userService.updataUserBan(Userid,0);
+        Resultentity resultentity=userService.getUserState(status);
+        return resultentity;
     }
     /**
      * 禁止普通用户登录，需要改库
      * @param Userid
      * @return
      */
-    @RequestMapping("/b")
+    @RequestMapping("/unban")
     public Resultentity<String> UnbanUser(String Userid){
-        return null;
+        Status status=userService.updataUserBan(Userid,1);
+        Resultentity resultentity=userService.getUserState(status);
+        return resultentity;
     }
 
 

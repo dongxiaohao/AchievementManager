@@ -34,11 +34,13 @@ public class AdminConntroller {
         //如果list为空表示出现异常
         if(list==null) {
             modelAndView.addObject("list",null);
-            modelAndView.addObject("issuccess","false");
+            modelAndView.addObject("success","false");
+            modelAndView.addObject("count",0);
             modelAndView.addObject("page",null);
         }else {
             modelAndView.addObject("list",list);
-            modelAndView.addObject("issuccess","success");
+            modelAndView.addObject("success","success");
+            modelAndView.addObject("count",list.size());
             modelAndView.addObject("page",page);
         }
         return modelAndView;

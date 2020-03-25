@@ -1,5 +1,6 @@
 package com.lnavm.dao;
 
+import com.lnavm.pojo.CxRecord;
 import com.lnavm.pojo.CxbInfo;
 import com.lnavm.pojo.XtrzInfo;
 import com.lnavm.thirdutils.Page;
@@ -47,5 +48,5 @@ public interface CxbInfoMapper {
     List<CxbInfo> queryBySjhWithQuerying(@Param("sjh") String sjh, Page<CxbInfo> page);
 
     List<CxbInfo> queryBySjhWithNoResult(@Param("sjh") String sjh, Page<CxbInfo> page);
-    List<CxbInfo> queryByKslx(@Param("kslx") String kslx, @Param("starttime") String starttime,@Param("endtime") String endtime,@Param("order") String order, @Param("yhsjh") String yhsjh, Page<CxbInfo> page);
+    List<CxRecord> queryByKslx(@Param("kslx") String kslx, @Param("starttime") String starttime, @Param("endtime") String endtime, @Param("order") String order, @Param("sjh") String sjh, Page<CxRecord> page);
 }

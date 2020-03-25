@@ -2,6 +2,7 @@ package com.lnavm.service.Impl;
 
 import com.lnavm.dao.CxbInfoMapper;
 import com.lnavm.dao.XtrzInfoMapper;
+import com.lnavm.pojo.CxRecord;
 import com.lnavm.pojo.CxbInfo;
 import com.lnavm.pojo.XtrzInfo;
 import com.lnavm.service.WatchRecordService;
@@ -15,7 +16,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 //    XtrzInfoMapper xtrzInfoMapper
     CxbInfoMapper cxbInfoMapper;
     @Override
-    public List<CxbInfo> QueryRecoed(String kslx, String starttime, String endtime, String order,String yhsjh , Page<CxbInfo> page) {
+    public List<CxRecord> QueryRecoed(String kslx, String starttime, String endtime, String order, String yhsjh , Page<CxRecord> page) {
         return cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
     }
 }

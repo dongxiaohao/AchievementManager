@@ -99,9 +99,10 @@ public class adminServiceImpl implements adminService {
     @Override
     public Status addadmin(String username,String password) {
         GlyxxInfo glyxxInfo=new GlyxxInfo();
-        glyxxInfo.setMm(password);
+        String pwdAfterSalt = MD5Utils.getSaltMD5(password.trim());
+        glyxxInfo.setMm(pwdAfterSalt);
         glyxxInfo.setGlyzh(username);
-        Resultentity resultentity=new Resultentity();
+       // Resultentity resultentity=new Resultentity();
         try {
             if(glyxxInfoMapper.insertSelective(glyxxInfo)>0)
                 return Status.OK;

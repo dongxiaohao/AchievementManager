@@ -1,5 +1,6 @@
 package com.lnavm.controller;
 
+import com.lnavm.pojo.CxRecord;
 import com.lnavm.pojo.CxbInfo;
 import com.lnavm.service.WatchRecordService;
 import com.lnavm.thirdutils.Page;
@@ -31,7 +32,7 @@ public class WatchRecordController {
         // 数据类型处理，转变为符合数据库中的存储类型
 
         Page page = new Page<>(request, response);
-        List<CxbInfo> list = watchRecordService.QueryRecoed(kslx,starttime,endtime,order,yhsjh,page);
+        List<CxRecord> list = watchRecordService.QueryRecoed(kslx,starttime,endtime,order,yhsjh,page);
         page.initialize();
         modelAndView.setViewName("recordofCX");
         if(list==null) {

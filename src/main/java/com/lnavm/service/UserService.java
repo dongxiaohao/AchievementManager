@@ -1,11 +1,13 @@
 package com.lnavm.service;
 
 import com.lnavm.entity.Resultentity;
+import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.pojo.YhxxInfo;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -17,7 +19,7 @@ public interface UserService {
      * @param page
      * @return
      */
-    List<YhxxInfo> QueryUser(String SfzhorSjh, Page<YhxxInfo> page);
+    List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page);
 
     /**
      * 通过用户id修改手机号
@@ -28,5 +30,16 @@ public interface UserService {
     Status MatifyUserSJH(String yhid,String sjh);
 
     Resultentity<String> getUserState(Status status);
+
+
+    /**
+     * 修改用户登录标志位
+     * @param yhid 用户id
+     * @param Banbz 修改之后的用户登录标志
+     * @return
+     */
+    Status updataUserBan(String yhid,int Banbz);
+
+    int insertYHZT(BigDecimal yhid,int Banbz);
 
 }
