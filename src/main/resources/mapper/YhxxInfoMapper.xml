@@ -25,7 +25,7 @@
     YHID, SJH, MM, SFZH, XM, YHM, YX
   </sql>
   <sql id="Record_Column_List" >
-    YHID, SJH, MM, SFZH, XM, YHM, YX, T_YHZT_INFO.YHZTID ,T_YHZT_INFO.ZTBZ,
+    Y_YHXX_INFO.YHID, Y_YHXX_INFO.SJH, Y_YHXX_INFO.MM, Y_YHXX_INFO.SFZH, Y_YHXX_INFO.XM, Y_YHXX_INFO.YHM, Y_YHXX_INFO.YX, T_YHZT_INFO.YHZTID ,T_YHZT_INFO.ZTBZ
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
     select 
