@@ -199,14 +199,17 @@
   </select>
 <select id="selectAll" resultMap="YhRecordMap">
   select
-  <include refid="Record_Column_List"></include>
+  <include refid="Record_Column_List"/>
   from T_YHZT_INFO,T_YHXX_INFO
-  where <if test="sjh != null">
+  <where>
+  <if test="sjh != null">
     SJH = #{sjh,jdbcType=VARCHAR} and
-</if>
+ </if>
 <if test="sfzh != null">
-  SFZH = #{sfzh,jdbcType=VARCHAR} and
+   SFZH = #{sfzh,jdbcType=VARCHAR} and
 </if>
-T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
+    and T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
+  </where>
+
 </select>
 </mapper>
