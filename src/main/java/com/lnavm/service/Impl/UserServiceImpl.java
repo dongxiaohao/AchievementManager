@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page) {
         List<YhrecordInfo> result=new ArrayList<>();
-        if(SfzhorSjh.length()==0 || SfzhorSjh.equals("")){
+        if(SfzhorSjh==null || "".equals(SfzhorSjh)){
             result=yhxxInfoMapper.selectUserBysjh(page,null,null);
         }else if(SfzhorSjh.length()== 11){
             result=yhxxInfoMapper.selectUserBysjh(page,SfzhorSjh,null);
