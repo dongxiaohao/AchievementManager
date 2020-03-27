@@ -33,13 +33,15 @@ public class UserServiceImpl implements UserService {
     public List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page) {
         List<YhrecordInfo> result=new ArrayList<>();
         if(SfzhorSjh==null || "".equals(SfzhorSjh)){
-            result=yhxxInfoMapper.selectUserBysjh(page,null,null);
+            result=yhxxInfoMapper.selectAll(page,null,null);
         }else if(SfzhorSjh.length()== 11){
-            result=yhxxInfoMapper.selectUserBysjh(page,SfzhorSjh,null);
+            result=yhxxInfoMapper.selectAll(page,SfzhorSjh,null);
 //            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
         }else if(SfzhorSjh.length()==15 || SfzhorSjh.length()==18){
-            result=yhxxInfoMapper.selectUserBysjh(page,null,SfzhorSjh);
+            result=yhxxInfoMapper.selectAll(page,null,SfzhorSjh);
 //            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
+        }else {
+            result=yhxxInfoMapper.selectAll(page,null,null);
         }
 
         return result;
