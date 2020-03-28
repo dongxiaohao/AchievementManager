@@ -1,7 +1,7 @@
 package com.lnavm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lnavm.entity.Resultentity;
-import com.lnavm.pojo.CxbInfo;
 import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.service.UserService;
 import com.lnavm.statusenum.Status;
@@ -9,7 +9,6 @@ import com.lnavm.thirdutils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,10 +22,28 @@ public class UserController {
     @Autowired
     UserService userService;
 
+//    private final HttpServletRequest request;
+//
+//    private final JSONObject jsonObject;
+//
+//
+//    @Autowired
+//    public UserController(HttpServletRequest request, JSONObject jsonObject) {
+//        this.request = request;
+//        this.jsonObject = jsonObject;
+//    }
+  //  private final JSONObject jsonObject;
+
+      //@Autowired
+//    public UserController(JSONObject jsonObject) {
+//        this.jsonObject = jsonObject;
+//    }
+
     @RequestMapping("/service")
-    public ModelAndView QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
+    public String QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response){
         //数据校验输入是否符合规则
         boolean right=false;
+        JSONObject jsonObject = new JSONObject();
          if(SfzhorSjh==null || SfzhorSjh.length()==0 || SfzhorSjh.length()==11 || SfzhorSjh.length()==15||SfzhorSjh.length()==18)
                 right=true;
         //如果符合进行查询
@@ -37,19 +54,14 @@ public class UserController {
             //判断是否存在相应用户
             page.initialize();
         }
-        modelAndView.setViewName("recordofuser");
-        if(list==null || list.size()==0) {
-            modelAndView.addObject("list",null);
-            modelAndView.addObject("count",0);
-            modelAndView.addObject("issuccess","false");
-            modelAndView.addObject("page",null);
-        }else {
-            modelAndView.addObject("list",list);
-            modelAndView.addObject("count",list.size());
-            modelAndView.addObject("issuccess","success");
-            modelAndView.addObject("page",page);
-        }
-        return modelAndView;
+//        modelAndView.setViewName("recordofuser");
+        jsonObject.put("recordList", list);
+        jsonObject.put("page", page);
+     //   jsonObject.put("success","success");
+
+      //  return jsonObject.toString();
+//        return modelAndView;
+        return null;
     }
 
     @RequestMapping("/motify")

@@ -39,7 +39,7 @@
     YHCKSJ
   </sql>
   <sql id="Record_Column_List" >
-    CXID, SJH, KSLX, SFZH, XM, KSNF, TJCXSJ, CXBZW, FHCXSJ, CXJGZT, T_XTRT_INFO.YHIP,T_XTRT_INFO.CZJG, T_XTRT_INFO.FWSJ, T_XTRT_INFO.OPERATE
+    T_CXB_INFO.CXID, T_CXB_INFO.SJH, T_CXB_INFO.KSLX, T_CXB_INFO.SFZH, T_CXB_INFO.XM,  T_CXB_INFO.KSNF, T_CXB_INFO.TJCXSJ, T_CXB_INFO.CXBZW, T_CXB_INFO.FHCXSJ, T_CXB_INFO.CXJGZT, T_XTRZ_INFO.YHIP,T_XTRZ_INFO.CZJG, T_XTRZ_INFO.FWSJ, T_XTRZ_INFO.OPERATE
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
     select 
@@ -287,21 +287,29 @@
   <select id="queryByKslx" resultMap="RecordResultMap">
     select
     <include refid="Record_Column_List"></include>
-    from T_CXB_INFO,T_XTRZ_INFO
-    where
-    <if test="kslx != null">
+    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
+    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    <where>
+      <if test="kslx != null">
         T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
-    </if>
-    <if test="yhsjh != null">
+      </if>
+      <if test="yhsjh != null">
         T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
-    </if>
-    <if test="starttime != null">
+      </if>
+      <if test="starttime != null">
         T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR} and
-    </if>
-    <if test="endtime != null">
+      </if>
+      <if test="endtime != null">
         T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR} AND
-    </if>
-    T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH;
-
+      </if>
+    </where>
+    ORDER by T_CXB_INFO.TJCXSJ ${order}
+  </select>
+  <select id="queryByAll" resultMap="RecordResultMap">
+    select
+    <include refid="Record_Column_List"></include>
+    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
+    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    ORDER by T_CXB_INFO.TJCXSJ ${order}
   </select>
 </mapper>

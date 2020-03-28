@@ -204,21 +204,18 @@
   on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
   <where>
   <if test="sjh != null">
-    AND SJH = #{sjh,jdbcType=VARCHAR}
+    AND T_YHXX_INFO.SJH = #{sjh,jdbcType=VARCHAR}
  </if>
 <if test="sfzh != null">
-   AND SFZH = #{sfzh,jdbcType=VARCHAR}
+   AND T_YHXX_INFO.SFZH = #{sfzh,jdbcType=VARCHAR}
 </if>
---     AND T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
-    and T_YHXX_INFO.YHID=T_YHZT_INFO.YHID
   </where>
-
 </select>
 
-    <select id="selectAllRecord" resultMap="YhRecordMap">
+  <select id="selectAllRecord" resultMap="YhRecordMap">
     select
     <include refid="Record_Column_List"/>
     from T_YHXX_INFO LEFT OUTER JOIN T_YHZT_INFO
     on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
-    </select>
+  </select>
 </mapper>

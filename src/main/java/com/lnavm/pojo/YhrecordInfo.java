@@ -92,4 +92,19 @@ public class YhrecordInfo {
     public void setYhztid(BigDecimal yhztid) {
         this.yhztid = yhztid;
     }
+
+    @Override
+    public String toString() {
+        return "YhrecordInfo{" +
+                "yhid=" + yhid +
+                ", sjh='" + sjh + '\'' +
+                ", mm='" + mm + '\'' +
+                ", sfzh='" + sfzh + '\'' +
+                ", xm='" + xm + '\'' +
+                ", yhm='" + yhm + '\'' +
+                ", yx='" + yx + '\'' +
+                ", yhztid=" + yhztid +
+                ", ztbz=" + ztbz +
+                '}';
+    }
 }

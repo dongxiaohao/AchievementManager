@@ -89,6 +89,7 @@ public class adminServiceImpl implements adminService {
      */
     @Override
     public List<GlyxxInfo> listAll(Page<GlyxxInfo> page) {
+        System.out.println("查看全部管理员");
         try {
             return glyxxInfoMapper.selectAll(page);
         }catch (Exception e){

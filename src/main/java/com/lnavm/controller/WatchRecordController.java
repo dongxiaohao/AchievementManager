@@ -1,5 +1,6 @@
 package com.lnavm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lnavm.pojo.CxRecord;
 import com.lnavm.pojo.CxbInfo;
 import com.lnavm.service.WatchRecordService;
@@ -28,25 +29,29 @@ public class WatchRecordController {
 
     @ResponseBody
     @RequestMapping("/record")
-    public ModelAndView getRecord(String kslx, String starttime, String endtime, String order,String yhsjh ,HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
+    public String getRecord(String kslx, String starttime, String endtime, String order,String yhsjh ,HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
         // 数据类型处理，转变为符合数据库中的存储类型
 
+
+        JSONObject jsonObject = new JSONObject();
         Page page = new Page<>(request, response);
         List<CxRecord> list = watchRecordService.QueryRecoed(kslx,starttime,endtime,order,yhsjh,page);
         page.initialize();
-        modelAndView.setViewName("recordofCX");
-        if(list==null) {
-            modelAndView.addObject("list",null);
-            modelAndView.addObject("count",0);
-            modelAndView.addObject("issuccess","false");
-            modelAndView.addObject("page",null);
-        }else {
-            modelAndView.addObject("list",list);
-            modelAndView.addObject("count",list.size());
-            modelAndView.addObject("issuccess","success");
-            modelAndView.addObject("page",page);
-        }
-        return modelAndView;
+//        modelAndView.setViewName("recordofCX");
+//        if(list==null) {
+//            modelAndView.addObject("list",null);
+//            modelAndView.addObject("count",0);
+//            modelAndView.addObject("issuccess","false");
+//            modelAndView.addObject("page",null);
+//        }else {
+//            modelAndView.addObject("list",list);
+//            modelAndView.addObject("count",list.size());
+//            modelAndView.addObject("issuccess","success");
+//            modelAndView.addObject("page",page);
+//        }
+        jsonObject.put("recordList",list);
+        jsonObject.put("page",page);
+        return jsonObject.toString();
     }
 
 }

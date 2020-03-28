@@ -1,5 +1,6 @@
 package com.lnavm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lnavm.entity.Resultentity;
 import com.lnavm.pojo.GlyrzInfo;
 import com.lnavm.pojo.GlyxxInfo;
@@ -26,24 +27,28 @@ public class AdminConntroller {
      * @return
      */
     @RequestMapping("/watchadmin")
-    public ModelAndView listadmin(HttpServletRequest request, HttpServletResponse response, ModelAndView modelAndView){
+    public String listadmin(HttpServletRequest request, HttpServletResponse response, ModelAndView modelAndView){
+        JSONObject jsonObject=new JSONObject();
         Page<GlyxxInfo> page=new Page<>(request,response);
         List<GlyxxInfo> list=adminService.listAll(page);
         page.initialize();
         modelAndView.setViewName("recordofadmin");
         //如果list为空表示出现异常
-        if(list==null) {
-            modelAndView.addObject("list",null);
-            modelAndView.addObject("success","false");
-            modelAndView.addObject("count",0);
-            modelAndView.addObject("page",null);
-        }else {
-            modelAndView.addObject("list",list);
-            modelAndView.addObject("success","success");
-            modelAndView.addObject("count",list.size());
-            modelAndView.addObject("page",page);
-        }
-        return modelAndView;
+//        if(list==null) {
+//            modelAndView.addObject("list",null);
+//            modelAndView.addObject("success","false");
+//            modelAndView.addObject("count",0);
+//            modelAndView.addObject("page",null);
+//        }else {
+//            modelAndView.addObject("list",list);
+//            modelAndView.addObject("success","success");
+//            modelAndView.addObject("count",list.size());
+//            modelAndView.addObject("page",page);
+//        }
+//        return modelAndView;
+        jsonObject.put("recordList",list);
+        jsonObject.put("page",page);
+        return jsonObject.toString();
     }
 
     @RequestMapping("/addadmin")
