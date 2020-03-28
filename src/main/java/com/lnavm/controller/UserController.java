@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/user")
@@ -25,16 +26,19 @@ public class UserController {
     @RequestMapping("/service")
     public ModelAndView QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
         //数据校验输入是否符合规则
-        // if(SfzhorSjh.length()!=0 || SfzhorSjh.)
-
+        boolean right=false;
+         if(SfzhorSjh==null || SfzhorSjh.length()==0 || SfzhorSjh.length()==11 || SfzhorSjh.length()==15||SfzhorSjh.length()==18)
+                right=true;
         //如果符合进行查询
+        List<YhrecordInfo> list=new ArrayList<>();
         Page page = new Page<>(request, response);
-        List<YhrecordInfo> list =userService.QueryUser(SfzhorSjh,page);
-        //判断是否存在相应用户
-
-        page.initialize();
+        if(right) {
+            list = userService.QueryUser(SfzhorSjh, page);
+            //判断是否存在相应用户
+            page.initialize();
+        }
         modelAndView.setViewName("recordofuser");
-        if(list==null) {
+        if(list==null || list.size()==0) {
             modelAndView.addObject("list",null);
             modelAndView.addObject("count",0);
             modelAndView.addObject("issuccess","false");

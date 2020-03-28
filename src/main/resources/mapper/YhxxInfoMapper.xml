@@ -25,7 +25,7 @@
     YHID, SJH, MM, SFZH, XM, YHM, YX
   </sql>
   <sql id="Record_Column_List" >
-    Y_YHXX_INFO.YHID, Y_YHXX_INFO.SJH, Y_YHXX_INFO.MM, Y_YHXX_INFO.SFZH, Y_YHXX_INFO.XM, Y_YHXX_INFO.YHM, Y_YHXX_INFO.YX, T_YHZT_INFO.YHZTID ,T_YHZT_INFO.ZTBZ
+    T_YHXX_INFO.YHID,  T_YHXX_INFO.SJH,  T_YHXX_INFO.MM, T_YHXX_INFO.SFZH, T_YHXX_INFO.XM, T_YHXX_INFO.YHM, T_YHXX_INFO.YX, T_YHZT_INFO.YHZTID ,T_YHZT_INFO.ZTBZ
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
     select 
@@ -199,17 +199,26 @@
   </select>
 <select id="selectAll" resultMap="YhRecordMap">
   select
-  <include refid="Record_Column_List"/>
-  from T_YHZT_INFO,T_YHXX_INFO
+ <include refid="Record_Column_List"/>
+  from T_YHXX_INFO LEFT JOIN T_YHZT_INFO
+  on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
   <where>
   <if test="sjh != null">
-    SJH = #{sjh,jdbcType=VARCHAR} and
+    AND SJH = #{sjh,jdbcType=VARCHAR}
  </if>
 <if test="sfzh != null">
-   SFZH = #{sfzh,jdbcType=VARCHAR} and
+   AND SFZH = #{sfzh,jdbcType=VARCHAR}
 </if>
-    and T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
+--     AND T_YHXX_INFO.YHID=T_YHZT_INFO.YHID;
+    and T_YHXX_INFO.YHID=T_YHZT_INFO.YHID
   </where>
 
 </select>
+
+    <select id="selectAllRecord" resultMap="YhRecordMap">
+    select
+    <include refid="Record_Column_List"/>
+    from T_YHXX_INFO LEFT OUTER JOIN T_YHZT_INFO
+    on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
+    </select>
 </mapper>

@@ -31,18 +31,20 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page) {
-        List<YhrecordInfo> result=new ArrayList<>();
+        List<YhrecordInfo> result;
+        System.out.println("查看用户信息");
         if(SfzhorSjh==null || "".equals(SfzhorSjh)){
-            result=yhxxInfoMapper.selectAll(page,null,null);
+           result=yhxxInfoMapper.selectAllRecord(page);
+          //  result=yhxxInfoMapper.selectAll(null,null);
         }else if(SfzhorSjh.length()== 11){
             result=yhxxInfoMapper.selectAll(page,SfzhorSjh,null);
 //            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
-        }else if(SfzhorSjh.length()==15 || SfzhorSjh.length()==18){
+        }else{
             result=yhxxInfoMapper.selectAll(page,null,SfzhorSjh);
 //            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
-        }else {
-            result=yhxxInfoMapper.selectAll(page,null,null);
         }
+        if(result!=null)
+            System.out.println(result.size());
 
         return result;
     }
