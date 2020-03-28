@@ -9,6 +9,7 @@ import com.lnavm.thirdutils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +41,7 @@ public class UserController {
 //    }
 
     @RequestMapping("/service")
+    @ResponseBody
     public String QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response){
         //数据校验输入是否符合规则
         boolean right=false;
@@ -59,12 +61,13 @@ public class UserController {
         jsonObject.put("page", page);
      //   jsonObject.put("success","success");
 
-      //  return jsonObject.toString();
+        return jsonObject.toString();
 //        return modelAndView;
-        return null;
+//        return null;
     }
 
     @RequestMapping("/motify")
+    @ResponseBody
     public Resultentity<String> MotifyUser(String yhid,String sjh){
         Status status=userService.MatifyUserSJH(yhid,sjh);
         Resultentity resultentity = userService.getUserState(status);
@@ -78,6 +81,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/ban")
+    @ResponseBody
     public Resultentity<String> BanUser(String Userid){
         Status status=userService.updataUserBan(Userid,0);
         Resultentity resultentity=userService.getUserState(status);
@@ -89,6 +93,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/unban")
+    @ResponseBody
     public Resultentity<String> UnbanUser(String Userid){
         Status status=userService.updataUserBan(Userid,1);
         Resultentity resultentity=userService.getUserState(status);

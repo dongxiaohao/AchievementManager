@@ -10,6 +10,7 @@ import com.lnavm.thirdutils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ public class AdminConntroller {
      * @return
      */
     @RequestMapping("/watchadmin")
+    @ResponseBody
     public String listadmin(HttpServletRequest request, HttpServletResponse response, ModelAndView modelAndView){
         JSONObject jsonObject=new JSONObject();
         Page<GlyxxInfo> page=new Page<>(request,response);
@@ -52,6 +54,7 @@ public class AdminConntroller {
     }
 
     @RequestMapping("/addadmin")
+    @ResponseBody
     public Resultentity<String> AddAdmin(String username,String password){
         Status status=adminService.addadmin(username,password);
         Resultentity<String> resultentity=adminService.getAdminState(status);
@@ -59,6 +62,7 @@ public class AdminConntroller {
     }
 
     @RequestMapping("/motifyadmin")
+    @ResponseBody
     public RequestMapping MotifyAdmin(String username,String password){
         return  null;
 
