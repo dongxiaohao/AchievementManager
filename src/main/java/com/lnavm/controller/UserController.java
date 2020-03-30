@@ -6,6 +6,7 @@ import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.service.UserService;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,14 +52,17 @@ public class UserController {
         //如果符合进行查询
         List<YhrecordInfo> list=new ArrayList<>();
         Page page = new Page<>(request, response);
+        Integer count=0;
         if(right) {
             list = userService.QueryUser(SfzhorSjh, page);
             //判断是否存在相应用户
             page.initialize();
+            count=userService.CountUserCon(SfzhorSjh);
         }
 //        modelAndView.setViewName("recordofuser");
         jsonObject.put("recordList", list);
         jsonObject.put("page", page);
+        jsonObject.put("count",count);
      //   jsonObject.put("success","success");
 
         return jsonObject.toString();
@@ -77,25 +81,25 @@ public class UserController {
 
     /**
      * 禁止普通用户登录，需要改库
-     * @param Userid
+     * @param userid
      * @return
      */
     @RequestMapping("/ban")
     @ResponseBody
-    public Resultentity<String> BanUser(String Userid){
-        Status status=userService.updataUserBan(Userid,0);
+    public Resultentity<String> BanUser(@Param("userid") String userid){
+        Status status=userService.updataUserBan(userid,0);
         Resultentity resultentity=userService.getUserState(status);
         return resultentity;
     }
     /**
      * 禁止普通用户登录，需要改库
-     * @param Userid
+     * @param userid
      * @return
      */
     @RequestMapping("/unban")
     @ResponseBody
-    public Resultentity<String> UnbanUser(String Userid){
-        Status status=userService.updataUserBan(Userid,1);
+    public Resultentity<String> UnbanUser(@Param("userid") String userid){
+        Status status=userService.updataUserBan(userid,1);
         Resultentity resultentity=userService.getUserState(status);
         return resultentity;
     }

@@ -22,6 +22,12 @@ public interface UserService {
     List<YhrecordInfo> QueryUser(String SfzhorSjh, Page<YhrecordInfo> page);
 
     /**
+     * 返回符合条件的用户数量
+     * @return
+     */
+    int CountUserCon(String SfzhorSjh);
+
+    /**
      * 通过用户id修改手机号
      * @param yhid
      * @param sjh

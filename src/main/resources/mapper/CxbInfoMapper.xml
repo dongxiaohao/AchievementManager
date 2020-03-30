@@ -312,4 +312,29 @@
     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     ORDER by T_CXB_INFO.TJCXSJ ${order}
   </select>
+  <select id="countByKslx" resultType="java.lang.Integer">
+    select count (T_CXB_INFO.CXID)
+    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
+    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    <where>
+      <if test="kslx != null">
+        T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
+      </if>
+      <if test="yhsjh != null">
+        T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
+      </if>
+      <if test="starttime != null">
+        T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR} and
+      </if>
+      <if test="endtime != null">
+        T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR} AND
+      </if>
+    </where>
+  </select>
+  <select id="countAll" resultType="java.lang.Integer">
+    select
+    count (T_CXB_INFO.CXID)
+    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
+    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+  </select>
 </mapper>

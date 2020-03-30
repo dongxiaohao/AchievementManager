@@ -46,6 +46,11 @@ public interface YhxxInfoMapper {
     List<YhrecordInfo> selectAll(Page<YhxxInfo> page);
 
     List<YhrecordInfo> selectAll(Page<YhrecordInfo> page,@Param("sjh") String sjh, @Param("sfzh") String sfzh);
+
     List<YhrecordInfo> selectAllRecord(Page<YhrecordInfo> page);
+
+    Integer countCondition(@Param("sjh") String sjh, @Param("sfzh") String sfzh);
+
+    Integer CountRecord();
     int updateSJHbyYHID(@Param("yhid") String yhid, @Param("sjh") String sjh);
 }

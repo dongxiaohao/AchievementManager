@@ -7,12 +7,14 @@ import com.lnavm.service.adminService;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
 import com.lnavm.utils.MD5Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class adminServiceImpl implements adminService {
+    @Autowired
     GlyxxInfoMapper glyxxInfoMapper;
 
     /**
@@ -99,6 +101,7 @@ public class adminServiceImpl implements adminService {
 
     @Override
     public Status addadmin(String username,String password) {
+        System.out.println("添加管理员...");
         GlyxxInfo glyxxInfo=new GlyxxInfo();
         String pwdAfterSalt = MD5Utils.getSaltMD5(password.trim());
         glyxxInfo.setMm(pwdAfterSalt);
@@ -111,6 +114,7 @@ public class adminServiceImpl implements adminService {
                 return Status.FAIL_ADDADMIN;
 
         }catch (Exception e){
+            System.out.println(e.toString());
                 return Status.ERROR;
         }
     }

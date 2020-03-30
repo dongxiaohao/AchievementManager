@@ -218,4 +218,25 @@
     from T_YHXX_INFO LEFT OUTER JOIN T_YHZT_INFO
     on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
   </select>
+
+  <select id="countCondition" resultType="java.lang.Integer">
+    select count (T_YHXX_INFO.YHID)
+    from T_YHXX_INFO LEFT JOIN T_YHZT_INFO
+    on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
+    <where>
+      <if test="sjh != null">
+        AND T_YHXX_INFO.SJH = #{sjh,jdbcType=VARCHAR}
+      </if>
+      <if test="sfzh != null">
+        AND T_YHXX_INFO.SFZH = #{sfzh,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="CountRecord" resultType="java.lang.Integer">
+    select
+    count (T_YHXX_INFO.YHID)
+    from T_YHXX_INFO LEFT OUTER JOIN T_YHZT_INFO
+    on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
+  </select>
 </mapper>
