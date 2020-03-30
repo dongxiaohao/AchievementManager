@@ -17,4 +17,14 @@ public interface WatchRecordService {
      * @return
      */
     List<CxRecord> QueryRecoed(String kslx, String starttime, String endtime, String order , String yhsjh, Page<CxRecord> page);
+
+    /**
+     *
+     * @param kslx
+     * @param starttime
+     * @param endtime
+     * @param yhsjh
+     * @return
+     */
+    int countRecord(String kslx, String starttime, String endtime, String yhsjh);
 }

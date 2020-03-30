@@ -53,6 +53,23 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public int CountUserCon(String SfzhorSjh) {
+        int result=0;
+        if(SfzhorSjh==null || "".equals(SfzhorSjh)){
+            result=yhxxInfoMapper.CountRecord();
+            //  result=yhxxInfoMapper.selectAll(null,null);
+        }else if(SfzhorSjh.length()== 11){
+            result=yhxxInfoMapper.countCondition(SfzhorSjh,null);
+//            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
+        }else{
+            result=yhxxInfoMapper.countCondition(null,SfzhorSjh);
+//            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
+        }
+        System.out.println("总记录数：" +result);
+        return result;
+    }
+
     /**
      *
      * @param yhid
@@ -105,6 +122,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Status updataUserBan(String yhid, int Banbz) {
         try {
+            System.out.println(new BigDecimal(yhid));
             if (yhztInfoMapper.selectZTByYHID(new BigDecimal(yhid)) == null) {
                 if (insertYHZT(new BigDecimal(yhid), Banbz) > 0) {
                     return Status.OK;
@@ -116,6 +134,7 @@ public class UserServiceImpl implements UserService {
                 return Status.FAIL_BAN;
             }
         }catch (Exception e){
+            System.out.println(e.toString());
             return Status.ERROR;
         }
     }

@@ -17,7 +17,7 @@
     <update id="updataZTBYYHIH">
         update T_YHZT_INFO
         set ZTBZ=#{ztbz,jdbcType=NUMERIC}
-        where T_YHZT_INFO.YHID = #{yhid,jdbcType=NUMERIC};
+        where T_YHZT_INFO.YHID = #{yhid,jdbcType=NUMERIC}
     </update>
     <insert id="insertSelective" parameterType="com.lnavm.pojo.YhztInfo" >
         insert into T_YHZT_INFO
