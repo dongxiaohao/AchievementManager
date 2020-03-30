@@ -37,6 +37,7 @@ public class WatchRecordController {
         Page page = new Page<>(request, response);
         List<CxRecord> list = watchRecordService.QueryRecoed(kslx,starttime,endtime,order,yhsjh,page);
         page.initialize();
+        Integer count=watchRecordService.countRecord(kslx,starttime,endtime,yhsjh);
 //        modelAndView.setViewName("recordofCX");
 //        if(list==null) {
 //            modelAndView.addObject("list",null);
@@ -51,6 +52,7 @@ public class WatchRecordController {
 //        }
         jsonObject.put("recordList",list);
         jsonObject.put("page",page);
+        jsonObject.put("count",count);
         return jsonObject.toString();
     }
 

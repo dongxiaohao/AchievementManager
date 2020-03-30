@@ -17,6 +17,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 //    XtrzInfoMapper xtrzInfoMapper
     @Autowired
     CxbInfoMapper cxbInfoMapper;
+
     @Override
     public List<CxRecord> QueryRecoed(String kslx, String starttime, String endtime, String order, String yhsjh , Page<CxRecord> page) {
         System.out.println("系统日志查询...");
@@ -32,5 +33,18 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
         System.out.println(list.size());
         return list;
+    }
+
+    @Override
+    public int countRecord(String kslx, String starttime, String endtime,  String yhsjh) {
+        System.out.println("统计日志数量...");
+        //默认降序
+        int result=0;
+        if(kslx==null || starttime==null || endtime==null || yhsjh==null)
+            result=cxbInfoMapper.countAll();
+        else
+            result=cxbInfoMapper.countByKslx(kslx,starttime,endtime,yhsjh);
+        System.out.println("总数量"+result);
+        return result;
     }
 }
