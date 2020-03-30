@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
+import java.util.Date;
 
 @SpringBootApplication
 @EnableScheduling
@@ -19,4 +22,17 @@ public class LnAvmApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());
     }
+
+//    @Scheduled(fixedRate = 2000)
+//    public void fixedRate() {
+//        System.out.println("fixedRate>>>"+new Date());
+//    }
+//    @Scheduled(fixedDelay = 2000)
+//    public void fixedDelay() {
+//        System.out.println("fixedDelay>>>"+new Date());
+//    }
+//    @Scheduled(initialDelay = 2000,fixedDelay = 2000)
+//    public void initialDelay() {
+//        System.out.println("initialDelay>>>"+new Date());
+//    }
 }

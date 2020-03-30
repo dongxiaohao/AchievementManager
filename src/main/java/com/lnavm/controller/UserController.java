@@ -86,7 +86,8 @@ public class UserController {
      */
     @RequestMapping("/ban")
     @ResponseBody
-    public Resultentity<String> BanUser(@Param("userid") String userid){
+    public Resultentity<String> BanUser(@Param("uSuser" +
+            "serid") String userid){
         Status status=userService.updataUserBan(userid,0);
         Resultentity resultentity=userService.getUserState(status);
         return resultentity;
