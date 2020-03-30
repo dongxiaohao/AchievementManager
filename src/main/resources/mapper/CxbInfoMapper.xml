@@ -337,4 +337,12 @@
     from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
   </select>
+  <select id="statisticByKslx" resultType="java.lang.Integer">
+    select count (KSLX)
+    from T_CXB_INFO
+    where KSLX = #{kslx,jdbcType=NUMERIC} and
+    TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = TIMESTAMP} and
+    TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=TIMESTAMP}
+    ORDER by KSLX
+  </select>
 </mapper>

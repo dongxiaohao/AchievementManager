@@ -52,4 +52,6 @@ public interface CxbInfoMapper {
     List<CxRecord> queryByAll( @Param("order") String order, Page<CxRecord> page);
     Integer countByKslx(@Param("kslx") String kslx, @Param("starttime") String starttime, @Param("endtime") String endtime, @Param("sjh") String sjh);
     Integer countAll();
+
+    int statisticByKslx(@Param("kslx") String kslx, @Param("starttime") String starttime, @Param("endtime") String endtime);
 }

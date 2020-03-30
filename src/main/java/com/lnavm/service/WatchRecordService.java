@@ -27,4 +27,6 @@ public interface WatchRecordService {
      * @return
      */
     int countRecord(String kslx, String starttime, String endtime, String yhsjh);
+
+    int StatisticRecord(String kslx, String starttime, String endtime);
 }

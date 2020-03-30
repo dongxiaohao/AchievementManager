@@ -56,4 +56,13 @@ public class WatchRecordController {
         return jsonObject.toString();
     }
 
+    @RequestMapping("/statistic")
+    @ResponseBody
+    public String statOfRecord(String kslx, String starttime, String endtime){
+
+        JSONObject jsonObject = new JSONObject();
+        int numOfRecord = watchRecordService.StatisticRecord(kslx, starttime, endtime);
+        jsonObject.put("countOfRecord",numOfRecord);
+        return jsonObject.toString();
+    }
 }
