@@ -340,9 +340,13 @@
   <select id="statisticByKslx" resultType="java.lang.Integer">
     select count (KSLX)
     from T_CXB_INFO
-    where KSLX = #{kslx,jdbcType=NUMERIC} and
-    TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = TIMESTAMP} and
-    TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=TIMESTAMP}
+    where T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
+      <if test="starttime != null">
+        and TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endtime != null">
+        and TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = TIMESTAMP}
+      </if>
     ORDER by KSLX
   </select>
 </mapper>

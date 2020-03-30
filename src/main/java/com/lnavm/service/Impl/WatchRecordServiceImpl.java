@@ -58,10 +58,17 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 
     @Override
     public int StatisticRecord(String kslx, String starttime, String endtime) {
+        System.out.println("统计考试查询数量...");
         //设置任务开始时间
-        starttime = starttime + " 00:00:00";
+        if (!starttime.equals("")){
+            starttime = starttime + " 00:00:00";
+        }
+        else starttime=null;
         //设置任务截止时间
-        endtime = endtime + " 23:59:59";
+        if (!endtime.equals("")){
+            endtime = endtime + " 23:59:59";
+        }
+        else endtime=null;
         return cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
     }
 }
