@@ -239,4 +239,9 @@
     from T_YHXX_INFO LEFT OUTER JOIN T_YHZT_INFO
     on T_YHZT_INFO.YHID = T_YHXX_INFO.YHID
   </select>
+  <update id="updateSJHbyYHID" parameterType="java.lang.String">
+    update T_YHXX_INFO
+    set SJH = #{sjh,jdbcType=VARCHAR}
+    where YHID = #{yhid,jdbcType=NUMERIC}
+  </update>
 </mapper>

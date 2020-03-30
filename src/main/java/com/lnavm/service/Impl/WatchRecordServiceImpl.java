@@ -27,6 +27,8 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             order="desc";
         else
             order="asc";
+        if(kslx.equals("0"))
+            kslx=null;
         if((kslx==null && starttime==null && endtime==null && yhsjh==null)||
                 (kslx.trim().length()==0 && starttime.trim().length()==0 && endtime.trim().length()==0 && yhsjh.trim().length()==0)){
             System.out.println("统计全部");
