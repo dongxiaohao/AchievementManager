@@ -87,6 +87,7 @@ public class UserServiceImpl implements UserService {
             else
                 return  Status.FAIL_MOTIFYSJH;
         }catch (Exception e){
+              System.out.println(e.toString());
                 return Status.ERROR;
         }
     }

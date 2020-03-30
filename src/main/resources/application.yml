@@ -37,3 +37,4 @@ supportExamination: # 支持的考试类型
     - {name: 高等教育自学考试毕业证明, scoreCols: 1, engName: zkzs, code: 14, startYear: -1, stopYear: -1, timeList: -1, pdfTemplate: zkby_pdf.ftl}
     - {name: 全国成人高校招生考试, scoreCols: 1, engName: crgk, code: 13, startYear: 2005, stopYear: -1, timeList: -1, pdfTemplate: crgk_pdf.ftl}
     - {name: 辽宁省职业教育对口升学考试, scoreCols: 1, engName: dksx, code: 16, startYear: 2017, stopYear: -1, timeList: -1, pdfTemplate: dksx_pdf.ftl}
+    - {name: 全部考试, scoreCols: 1, engName: dksx, code: 0, startYear: 2017, stopYear: -1, timeList: -1, pdfTemplate: dksx_pdf.ftl}
