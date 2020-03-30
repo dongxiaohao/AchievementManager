@@ -43,11 +43,11 @@ public class UserServiceImpl implements UserService {
             result=yhxxInfoMapper.selectAll(page,null,SfzhorSjh);
 //            result.add(yhxxInfoMapper.selectBySJH(SfzhorSjh));
         }
-        if(result!=null){
-            System.out.println(result.size());
-            for(YhrecordInfo yhrecordInfo:result)
-                System.out.println(yhrecordInfo.toString());
-        }
+//        if(result!=null){
+//            System.out.println(result.size());
+//            for(YhrecordInfo yhrecordInfo:result)
+//                System.out.println(yhrecordInfo.toString());
+//        }
 
 
         return result;

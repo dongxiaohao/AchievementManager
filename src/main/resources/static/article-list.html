@@ -23,7 +23,7 @@
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统日志 <span class="c-gray en">&gt;</span> 系统日志查看 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<div class="page-container">
+<div class="page-container" id="recorder">
 	<div class="text-c">
 		<button onclick="removeIframe()" class="btn btn-primary radius">关闭选项卡</button>
 	 <span class="select-box inline">
@@ -95,20 +95,65 @@
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="static/js/vue.js"></script>
 <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
 <!--<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> -->
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
-<script type="text/javascript" src="static/js/article-list.js"></script>
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"pading":false,
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
-	]
-});
+
+    var recorder = new Vue({
+        el:"#recorder",
+        data:{
+            recordlist:[],
+            page:"",
+            examTypes:"",
+			starttime:"",
+			endtime:"",
+			number:"",
+			order:"",
+        }
+    });
+
+
+
+    function submitRequire(){
+		recorder.examTypes= $("#exam  option:selected").val();
+        recorder.starTime=document.getElementById("logmin").value;
+        recorder.endTime=$("#logmax").val();
+        recorder.number=document.getElementById("sfzh").value;
+        console.log(recorder.endTime);
+        console.log(recorder.starTime);
+        $.ajax({
+            type: 'POST',
+            url: "/recode/record",
+            data:{
+                kslx:recorder.examTypes,
+                starttime:recorder.endTime,
+                endtime:recorder.starTime,
+                yhsjh:recorder.number,
+            },
+            success: function(data){
+                var json=JSON.parse(data);
+                console.log(data);
+                recorder.recordlist=json.recordList;
+            },
+            error:function(data) {
+                // console.log("怎么了");
+                console.log(data.msg);
+            },
+        });
+    }
+//     $(function(){
+// $('.table-sort').dataTable({
+// 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+// 	"bStateSave": true,//状态保存
+// 	"pading":false,
+// 	"aoColumnDefs": [
+// 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+// 	  {"orderable":false,"aTargets":[0,8]}// 不参与排序的列
+// 	]
+// });
+//     });
 
 /*资讯-添加*/
 function article_add(title,url,w,h){

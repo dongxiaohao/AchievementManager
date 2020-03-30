@@ -320,7 +320,7 @@
       <if test="kslx != null">
         T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
       </if>
-      <if test="yhsjh != null">
+      <if test="sjh != null">
         T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
       </if>
       <if test="starttime != null">
