@@ -291,16 +291,16 @@
     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     <where>
       <if test="kslx != null">
-        T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
+        and T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
       </if>
-      <if test="yhsjh != null">
-        T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
+      <if test="sjh != null">
+        and T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR}
       </if>
       <if test="starttime != null">
-        T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR} and
+        and T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR}
       </if>
       <if test="endtime != null">
-        T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR} AND
+        and T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR}
       </if>
     </where>
     ORDER by T_CXB_INFO.TJCXSJ ${order}
@@ -318,16 +318,16 @@
     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     <where>
       <if test="kslx != null">
-        T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC} and
+        and T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
       </if>
       <if test="sjh != null">
-        T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR} and
+        and T_CXB_INFO.SJH=  #{sjh,jdbcType=VARCHAR}
       </if>
       <if test="starttime != null">
-        T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR} and
+        and T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR}
       </if>
       <if test="endtime != null">
-        T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR} AND
+        and T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR}
       </if>
     </where>
   </select>

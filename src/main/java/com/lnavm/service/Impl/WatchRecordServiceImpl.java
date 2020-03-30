@@ -27,10 +27,16 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             order="desc";
         else
             order="asc";
-        if(kslx==null || starttime==null || endtime==null || yhsjh==null)
+        if((kslx==null && starttime==null && endtime==null && yhsjh==null)||
+                (kslx.trim().length()==0 && starttime.trim().length()==0 && endtime.trim().length()==0 && yhsjh.trim().length()==0)){
+            System.out.println("统计全部");
             list=cxbInfoMapper.queryByAll(order,page);
-        else
+        } else{
+            System.out.println("部分查询");
+            System.out.println(yhsjh);
             list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
+        }
+
         System.out.println(list.size());
         return list;
     }
