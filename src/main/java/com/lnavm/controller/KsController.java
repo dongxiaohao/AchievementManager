@@ -50,7 +50,8 @@ public class KsController {
         }
         Grades grades=gradeService.getGrade(yzbm ,kslx);
         jsonObject.put("success","true");
-        jsonObject.put("grade",grades);
+        jsonObject.put("Scores",grades.getScoresMap());
+        jsonObject.put("Others",grades.getOtherMap());
         return jsonObject.toString();
     }
 }

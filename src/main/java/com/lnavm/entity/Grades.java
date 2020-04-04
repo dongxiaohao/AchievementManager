@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Grades {
     private HashMap<String, String> scoresMap; //成绩信息map，科目-成绩
+    private HashMap<String,String> otherMap;  //其他信息map，主要是自考
 
     /**
      * 设置成绩
@@ -51,5 +52,29 @@ public class Grades {
             }
         }
         return scoresMap;
+    }
+
+    /**
+     *往成绩单上添加其他信息
+     * @param xxmc   信息名称
+     * @param xxnr   信息内容
+     */
+    public void addOtherMessage(String xxmc, String xxnr) {
+        if(this.otherMap == null) {
+            this.otherMap = new HashMap<>();
+        }
+        this.otherMap.put(xxmc, xxnr);
+    }
+
+    public HashMap<String, String> getScoresMap() {
+        return scoresMap;
+    }
+
+    public HashMap<String, String> getOtherMap() {
+        return otherMap;
+    }
+
+    public void setOtherMap(HashMap<String, String> otherMap) {
+        this.otherMap = otherMap;
     }
 }
