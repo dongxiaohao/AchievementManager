@@ -33,6 +33,8 @@ public class CxRecord {
 
     private String operate;
 
+    private String ksm;
+
     public BigDecimal getCxid() {
         return cxid;
     }
@@ -151,5 +153,13 @@ public class CxRecord {
 
     public void setOperate(String operate) {
         this.operate = operate;
+    }
+
+    public String getKsm() {
+        return ksm;
+    }
+
+    public void setKsm(String ksm) {
+        this.ksm = ksm;
     }
 }

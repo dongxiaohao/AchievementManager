@@ -45,7 +45,14 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
         }
 
-        System.out.println(list.size());
+        //添加考试名称
+        for(CxRecord cxRecord:list){
+            String str=""+cxRecord.getKslx();
+            cxRecord.setKsm(examinationToCode.getExaminationMap().get(str));
+
+//            System.out.println(examinationToCode.getExaminationMap().get(str));
+        }
+//        System.out.println(list.size());
         return list;
     }
 
@@ -63,7 +70,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             result=cxbInfoMapper.countAll();
         else
             result=cxbInfoMapper.countByKslx(kslx,starttime,endtime,yhsjh);
-        System.out.println("总数量"+result);
+//        System.out.println("总数量"+result);
         return result;
     }
 
