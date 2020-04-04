@@ -38,3 +38,6 @@ supportExamination: # 支持的考试类型
     - {name: 全国成人高校招生考试, scoreCols: 1, engName: crgk, code: 13, startYear: 2005, stopYear: -1, timeList: -1, pdfTemplate: crgk_pdf.ftl}
     - {name: 辽宁省职业教育对口升学考试, scoreCols: 1, engName: dksx, code: 16, startYear: 2017, stopYear: -1, timeList: -1, pdfTemplate: dksx_pdf.ftl}
     - {name: 全部考试, scoreCols: 1, engName: dksx, code: 0, startYear: 2017, stopYear: -1, timeList: -1, pdfTemplate: dksx_pdf.ftl}
+examinationToCode:
+  codeMap: {辽宁省普通高中学生学业水平考试: 15,普通高等学校招生全国统一考试: 11,自学考试: 18,高等教育自学考试毕业证明: 14,全国成人高校招生考试: 13,辽宁省职业教育对口升学考试: 16,全部考试: 0}
+  examinationMap: {15: 辽宁省普通高中学生学业水平考试,11: 普通高等学校招生全国统一考试,18: 自学考试,14: 高等教育自学考试毕业证明, 13: 全国成人高校招生考试, 16: 辽宁省职业教育对口升学考试,0: 全部考试}

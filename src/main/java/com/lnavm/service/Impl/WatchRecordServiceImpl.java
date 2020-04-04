@@ -27,15 +27,17 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             order="desc";
         else
             order="asc";
-        if(kslx.equals("0"))
-            kslx="";
-        if((kslx==null && starttime==null && endtime==null && yhsjh==null)||
-                (kslx.trim().length()==0 && starttime.trim().length()==0 && endtime.trim().length()==0 && yhsjh.trim().length()==0)){
+        if(kslx!=null && kslx.equals("0"))
+            kslx=null;
+        starttime = GuifanTime(starttime,0);
+        endtime = GuifanTime(endtime,1);
+        if((kslx==null || kslx.trim().length()==0) &&( starttime==null||starttime.trim().length()==0 )&&
+                (endtime==null || endtime.trim().length()==0) &&( yhsjh==null || yhsjh.trim().length()==0))
+        {
             System.out.println("统计全部");
             list=cxbInfoMapper.queryByAll(order,page);
         } else{
             System.out.println("部分查询");
-            System.out.println(yhsjh);
             list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
         }
 
@@ -48,7 +50,12 @@ public class WatchRecordServiceImpl implements WatchRecordService {
         System.out.println("统计日志数量...");
         //默认降序
         int result=0;
-        if(kslx==null || starttime==null || endtime==null || yhsjh==null)
+        starttime = GuifanTime(starttime,0);
+        endtime = GuifanTime(endtime,1);
+        if(kslx!=null && kslx.equals("0"))
+            kslx=null;
+        if((kslx==null || kslx.trim().length()==0) &&( starttime==null||starttime.trim().length()==0 )&&
+                (endtime==null || endtime.trim().length()==0) &&( yhsjh==null || yhsjh.trim().length()==0))
             result=cxbInfoMapper.countAll();
         else
             result=cxbInfoMapper.countByKslx(kslx,starttime,endtime,yhsjh);
@@ -60,15 +67,33 @@ public class WatchRecordServiceImpl implements WatchRecordService {
     public int StatisticRecord(String kslx, String starttime, String endtime) {
         System.out.println("统计考试查询数量...");
         //设置任务开始时间
-        if (!starttime.equals("")){
-            starttime = starttime + " 00:00:00";
-        }
-        else starttime=null;
+//        if (!starttime.equals("")){
+//            starttime = starttime + " 00:00:00";
+//        }
+//        else starttime=null;
         //设置任务截止时间
-        if (!endtime.equals("")){
-            endtime = endtime + " 23:59:59";
-        }
-        else endtime=null;
+//        if (!endtime.equals("")){
+//            endtime = endtime + " 23:59:59";
+//        }
+//        else endtime=null;
+        starttime = GuifanTime(starttime,0);
+        endtime = GuifanTime(endtime,1);
         return cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
+    }
+
+    /**
+     * 将时间变为标准格式
+     * @param time 输入格式：xxxx-xx-xx
+     * @param flag 0 起始时间 1 截止时间
+     * @return
+     */
+    public String GuifanTime(String time,int flag){
+        if(time != null && time.trim().length()!=0){
+            if(flag == 0)
+                return time+" 00:00:00";
+            else
+                return time+ " 23:59:59";
+        }
+        return null;
     }
 }

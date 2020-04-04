@@ -1,12 +1,14 @@
 package com.lnavm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lnavm.Config.Constant;
 import com.lnavm.entity.Resultentity;
 import com.lnavm.pojo.GlyrzInfo;
 import com.lnavm.pojo.GlyxxInfo;
 import com.lnavm.service.adminService;
 import com.lnavm.statusenum.Status;
 import com.lnavm.thirdutils.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -63,8 +66,28 @@ public class AdminConntroller {
 
     @RequestMapping("/motifyadmin")
     @ResponseBody
-    public RequestMapping MotifyAdmin(String username,String password){
+    public Resultentity<String> MotifyAdmin(String username,String password){
         return  null;
-
     }
+
+    @RequestMapping("/ban")
+    @ResponseBody
+    public Resultentity<String> BanAdmin(){
+        return null;
+    }
+    @RequestMapping("/unban")
+    @ResponseBody
+    public  Resultentity<String> UnBanAdmin(){
+        return null;
+    }
+
+
+    @RequestMapping("/signOut")
+    @ResponseBody
+    public String signOut(HttpSession session) {
+        session.removeAttribute(Constant.LOGIN_ADMIN);
+        session.removeAttribute(Constant.YHM);
+        return "longin";
+    }
+
 }
