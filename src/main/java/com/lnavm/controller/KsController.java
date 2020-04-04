@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/ks")
@@ -25,10 +24,13 @@ public class KsController {
     ExaminationToCode examinationToCode;
 
     @RequestMapping("/ksxx")
+    @ResponseBody
     public String getKsxx(){
+        System.out.println("得到考试信息");
         JSONObject jsonObject=new JSONObject();
        // List<Examination> list = supportExamination.getExaminations();
         jsonObject.put("ksxx",examinationToCode.getCodeMap());
+//        System.out.println(examinationToCode.getCodeMap().size());
         return jsonObject.toString();
     }
 
