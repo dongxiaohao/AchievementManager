@@ -286,36 +286,39 @@
   </select>
   <select id="queryByKslx" resultMap="RecordResultMap">
     select
-    <include refid="Record_Column_List"></include>
-    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
-    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    <include refid="Base_Column_List"></include>
+    from T_CXB_INFO
+    --     LEFT OUTER JOIN  T_XTRZ_INFO
+    --     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     <where>
       <if test="kslx != null">
         and T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
       </if>
-      <if test="sjh != null">
-        and T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR}
-      </if>
       <if test="starttime != null">
-        and T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR}
+        and T_CXB_INFO.TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=VARCHAR}
       </if>
       <if test="endtime != null">
-        and T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR}
+        and T_CXB_INFO.TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = VARCHAR}
+      </if>
+      <if test="sjh != null">
+        and T_CXB_INFO.SJH =  #{sjh,jdbcType=VARCHAR}
       </if>
     </where>
     ORDER by T_CXB_INFO.TJCXSJ ${order}
   </select>
   <select id="queryByAll" resultMap="RecordResultMap">
     select
-    <include refid="Record_Column_List"></include>
-    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
-    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    <include refid="Base_Column_List"></include>
+    from T_CXB_INFO
+--     LEFT OUTER JOIN  T_XTRZ_INFO
+--     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     ORDER by T_CXB_INFO.TJCXSJ ${order}
   </select>
   <select id="countByKslx" resultType="java.lang.Integer">
     select count (T_CXB_INFO.CXID)
-    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
-    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    from T_CXB_INFO
+--      LEFT OUTER JOIN  T_XTRZ_INFO
+--     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
     <where>
       <if test="kslx != null">
         and T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
@@ -324,28 +327,29 @@
         and T_CXB_INFO.SJH=  #{sjh,jdbcType=VARCHAR}
       </if>
       <if test="starttime != null">
-        and T_CXB_INFO.TJCXSJ &gt;=  #{starttime,jdbcType=VARCHAR}
+        and T_CXB_INFO.TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=TIMESTAMP}
       </if>
       <if test="endtime != null">
-        and T_CXB_INFO.TJCXSJ &lt;= #{endtime,jdbcType = VARCHAR}
+        and T_CXB_INFO.TJCXSJ<![CDATA[<=]]> #{endtime,jdbcType = TIMESTAMP}
       </if>
     </where>
   </select>
   <select id="countAll" resultType="java.lang.Integer">
     select
     count (T_CXB_INFO.CXID)
-    from T_CXB_INFO LEFT OUTER JOIN  T_XTRZ_INFO
-    on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
+    from T_CXB_INFO
+--      LEFT OUTER JOIN  T_XTRZ_INFO
+--     on T_CXB_INFO.SJH=T_XTRZ_INFO.YHSJH
   </select>
   <select id="statisticByKslx" resultType="java.lang.Integer">
     select count (KSLX)
     from T_CXB_INFO
     where T_CXB_INFO.KSLX = #{kslx,jdbcType=NUMERIC}
       <if test="starttime != null">
-        and TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=TIMESTAMP}
+        and TJCXSJ <![CDATA[>=]]> #{starttime,jdbcType=VARCHAR}
       </if>
       <if test="endtime != null">
-        and TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = TIMESTAMP}
+        and TJCXSJ <![CDATA[<=]]> #{endtime,jdbcType = VARCHAR}
       </if>
     ORDER by KSLX
   </select>

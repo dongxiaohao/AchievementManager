@@ -11,6 +11,7 @@ import com.lnavm.thirdutils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             order="asc";
         if(kslx!=null && kslx.equals("0"))
             kslx=null;
-        starttime = GuifanTime(starttime,0);
-        endtime = GuifanTime(endtime,1);
+        if(yhsjh==null || yhsjh.trim().length()==0)
+            yhsjh=null;
+//        starttime = GuifanTime(starttime,0);
+//        endtime = GuifanTime(endtime,1);
         if((kslx==null || kslx.trim().length()==0) &&( starttime==null||starttime.trim().length()==0 )&&
                 (endtime==null || endtime.trim().length()==0) &&( yhsjh==null || yhsjh.trim().length()==0))
         {
@@ -42,7 +45,10 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             list=cxbInfoMapper.queryByAll(order,page);
         } else{
             System.out.println("部分查询");
-            list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
+            starttime=this.Guifan(starttime,0);
+            endtime=this.Guifan(endtime,1);
+        //            list=cxbInfoMapper.queryByKslx(kslx,startstringToTimpstamp(starttime,0),startstringToTimpstamp(endtime,1),order,yhsjh,page);
+            list=cxbInfoMapper.queryByKslx(kslx,starttime.trim(),endtime.trim(),order,yhsjh,page);
         }
 
         //添加考试名称
@@ -52,7 +58,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 
 //            System.out.println(examinationToCode.getExaminationMap().get(str));
         }
-//        System.out.println(list.size());
+        System.out.println(list.size());
         return list;
     }
 
@@ -61,16 +67,22 @@ public class WatchRecordServiceImpl implements WatchRecordService {
         System.out.println("统计日志数量...");
         //默认降序
         int result=0;
-        starttime = GuifanTime(starttime,0);
-        endtime = GuifanTime(endtime,1);
+//        starttime = startstringToTimpstamp(starttime,0);
+//        endtime = startstringToTimpstamp(endtime,1);
         if(kslx!=null && kslx.equals("0"))
             kslx=null;
-        if((kslx==null || kslx.trim().length()==0) &&( starttime==null||starttime.trim().length()==0 )&&
+        if(yhsjh==null && yhsjh.trim().length()==0)
+            yhsjh=null;
+        if((kslx==null || kslx.trim().length()==0) && ( starttime==null||starttime.trim().length()==0 )&&
                 (endtime==null || endtime.trim().length()==0) &&( yhsjh==null || yhsjh.trim().length()==0))
             result=cxbInfoMapper.countAll();
-        else
+        else{
+            starttime=this.Guifan(starttime,0);
+            endtime=this.Guifan(endtime,1);
             result=cxbInfoMapper.countByKslx(kslx,starttime,endtime,yhsjh);
-//        System.out.println("总数量"+result);
+        }
+
+        System.out.println("总数量"+result);
         return result;
     }
 
@@ -87,8 +99,8 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 //            endtime = endtime + " 23:59:59";
 //        }
 //        else endtime=null;
-        starttime = GuifanTime(starttime,0);
-        endtime = GuifanTime(endtime,1);
+        starttime = Guifan(starttime,0);
+        endtime = Guifan(endtime,1);
         HashMap<String,String> hash=new HashMap<>();
         for(String kslx: examinationToCode.getExaminationMap().keySet()) {
             int recordcount = cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
@@ -98,19 +110,17 @@ public class WatchRecordServiceImpl implements WatchRecordService {
         return hash;
     }
 
-    /**
-     * 将时间变为标准格式
-     * @param time 输入格式：xxxx-xx-xx
-     * @param flag 0 起始时间 1 截止时间
-     * @return
-     */
-    public String GuifanTime(String time,int flag){
-        if(time != null && time.trim().length()!=0){
-            if(flag == 0)
-                return time+" 00:00:00";
-            else
-                return time+ " 23:59:59";
+    public String Guifan(String time,int flag){
+        if(time==null || time.length()==0)
+            return null;
+        switch (flag){
+            case 0:
+                time = time + " 00:00:00";
+                break;
+            case 1:
+                time = time + " 23:59:59";
+                break;
         }
-        return null;
+        return time;
     }
 }

@@ -6,6 +6,7 @@ import com.lnavm.pojo.CxbInfo;
 import com.lnavm.service.WatchRecordService;
 import com.lnavm.thirdutils.Page;
 import org.apache.catalina.LifecycleState;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class WatchRecordController {
 
     @ResponseBody
     @RequestMapping("/record")
-    public String getRecord(String kslx, String starttime, String endtime, String order,String yhsjh ,HttpServletRequest request, HttpServletResponse response,ModelAndView modelAndView){
+    public String getRecord(@Param("kslx") String kslx, @Param("starttime")String starttime, @Param("endtime") String endtime,@Param("order") String order, @Param("yhsjh") String yhsjh , HttpServletRequest request, HttpServletResponse response){
         // 数据类型处理，转变为符合数据库中的存储类型
 
 
@@ -59,7 +60,7 @@ public class WatchRecordController {
 
     @RequestMapping("/statistic")
     @ResponseBody
-    public String statOfRecord(String starttime, String endtime){
+    public String statOfRecord(@Param("starttime") String starttime, @Param("endtime") String endtime){
 
         JSONObject jsonObject = new JSONObject();
         HashMap<String,String> numOfRecord = watchRecordService.StatisticRecord(starttime, endtime);
