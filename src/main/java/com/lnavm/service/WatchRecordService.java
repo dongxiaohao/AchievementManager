@@ -5,6 +5,7 @@ import com.lnavm.pojo.CxbInfo;
 import com.lnavm.thirdutils.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 @Service
 public interface WatchRecordService {
@@ -28,5 +29,5 @@ public interface WatchRecordService {
      */
     int countRecord(String kslx, String starttime, String endtime, String yhsjh);
 
-    int StatisticRecord(String kslx, String starttime, String endtime);
+    HashMap<String,String> StatisticRecord(String starttime, String endtime);
 }

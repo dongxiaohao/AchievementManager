@@ -1,5 +1,6 @@
 package com.lnavm.service.Impl;
 
+import com.lnavm.Config.ExaminationToCode;
 import com.lnavm.dao.CxbInfoMapper;
 import com.lnavm.dao.XtrzInfoMapper;
 import com.lnavm.pojo.CxRecord;
@@ -10,6 +11,7 @@ import com.lnavm.thirdutils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -17,6 +19,8 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 //    XtrzInfoMapper xtrzInfoMapper
     @Autowired
     CxbInfoMapper cxbInfoMapper;
+    @Autowired
+    ExaminationToCode examinationToCode;
 
     @Override
     public List<CxRecord> QueryRecoed(String kslx, String starttime, String endtime, String order, String yhsjh , Page<CxRecord> page) {
@@ -64,7 +68,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
     }
 
     @Override
-    public int StatisticRecord(String kslx, String starttime, String endtime) {
+    public HashMap<String,String> StatisticRecord(String starttime, String endtime) {
         System.out.println("统计考试查询数量...");
         //设置任务开始时间
 //        if (!starttime.equals("")){
@@ -78,7 +82,13 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 //        else endtime=null;
         starttime = GuifanTime(starttime,0);
         endtime = GuifanTime(endtime,1);
-        return cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
+        HashMap<String,String> hash=new HashMap<>();
+        for(String kslx: examinationToCode.getExaminationMap().keySet()) {
+            int recordcount = cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
+            hash.put(examinationToCode.getExaminationMap().get(kslx),""+recordcount);
+        }
+
+        return hash;
     }
 
     /**

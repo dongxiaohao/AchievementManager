@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -58,10 +59,10 @@ public class WatchRecordController {
 
     @RequestMapping("/statistic")
     @ResponseBody
-    public String statOfRecord(String kslx, String starttime, String endtime){
+    public String statOfRecord(String starttime, String endtime){
 
         JSONObject jsonObject = new JSONObject();
-        int numOfRecord = watchRecordService.StatisticRecord(kslx, starttime, endtime);
+        HashMap<String,String> numOfRecord = watchRecordService.StatisticRecord(starttime, endtime);
         jsonObject.put("countOfRecord",numOfRecord);
         return jsonObject.toString();
     }
