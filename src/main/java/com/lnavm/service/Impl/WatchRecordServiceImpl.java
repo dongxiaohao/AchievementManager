@@ -114,7 +114,27 @@ public class WatchRecordServiceImpl implements WatchRecordService {
         HashMap<String,String> hash=new HashMap<>();
         for(String kslx: examinationToCode.getExaminationMap().keySet()) {
             int recordcount = cxbInfoMapper.statisticByKslx(kslx,starttime,endtime);
-            hash.put(kslx+"",""+recordcount);
+            switch (kslx){
+                case "13":
+                    hash.put("crgk",""+recordcount);
+                    break;
+                case "14":
+                    hash.put("zkby",""+recordcount);
+                    break;
+                case "15":
+                    hash.put("xysp",""+recordcount);
+                    break;
+                case "16":
+                    hash.put("dksx",""+recordcount);
+                    break;
+                case "11":
+                    hash.put("gk",""+recordcount);
+                    break;
+                case "18":
+                    hash.put("zxks",""+recordcount);
+                    break;
+            }
+
         }
 
         return hash;
