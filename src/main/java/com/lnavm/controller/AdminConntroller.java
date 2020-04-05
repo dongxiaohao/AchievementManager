@@ -67,20 +67,24 @@ public class AdminConntroller {
     @RequestMapping("/motifyadmin")
     @ResponseBody
     public Resultentity<String> MotifyAdmin(String username,String password){
+        //todo
         return  null;
     }
 
     @RequestMapping("/ban")
     @ResponseBody
-    public Resultentity<String> BanAdmin(){
+    public Resultentity<String> BanAdmin()
+    {
+        //todo
         return null;
     }
     @RequestMapping("/unban")
     @ResponseBody
     public  Resultentity<String> UnBanAdmin(){
+
+        //todo
         return null;
     }
-
 
     @RequestMapping("/signOut")
     @ResponseBody
