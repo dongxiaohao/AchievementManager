@@ -25,4 +25,5 @@ public interface GlyxxInfoMapper {
     GlyxxInfo selectByGLYM(@Param("glyzh") String glyzh);
 
     List<GlyxxInfo> selectAll(Page<GlyxxInfo> page);
+    int updateBMByGlyid(@Param("glyid") String glyid,@Param("bm") String bm);
 }

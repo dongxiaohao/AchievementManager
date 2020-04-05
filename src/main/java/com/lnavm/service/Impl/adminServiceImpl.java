@@ -10,6 +10,7 @@ import com.lnavm.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -31,11 +32,15 @@ public class adminServiceImpl implements adminService {
         if(password.length()==0 || password.equals(""))
             return Status.EMPTY_PASSWORD;
         try {
-            String right_password = glyxxInfoMapper.selectPASSByGLYM(username);
-            if (right_password.length() == 0 || right_password.equals(""))
+            GlyxxInfo glyxxInfo=getGlyxxInfo(username);
+            if (glyxxInfo == null)
                 return Status.ERROR_USERNAME;
-            if (MD5Utils.getSaltverifyMD5(password, right_password))
+            if (MD5Utils.getSaltverifyMD5(password, glyxxInfo.getMm())){
+                if(glyxxInfo.getBm() == "0")
+                    return Status.BAN_ADMIN;
                 return Status.OK;
+            }
+
             return Status.EMPTY_PASSWORD;
         }catch (Exception e){
             return Status.ERROR;
@@ -79,6 +84,15 @@ public class adminServiceImpl implements adminService {
             case ERROR:
                 resultentity.setMessage(Status.ERROR_MAG);
                 break;
+            case EMPTY_ADMINID:
+                resultentity.setMessage(Status.EMPTY_ADMINID_MAG);
+                break;
+            case FAIL_UPDATAADMIN:
+                resultentity.setMessage(Status.FAIL_UPDATAADMIN_MAG);
+            case FAIL_UPDATAADMINSTU:
+                resultentity.setMessage(Status.FAIL_UPDATAADMINSTU_MAG);
+            case BAN_ADMIN:
+                resultentity.setMessage(Status.BAN_ADMIN_MAG);
 
         }
 
@@ -102,10 +116,15 @@ public class adminServiceImpl implements adminService {
     @Override
     public Status addadmin(String username,String password) {
         System.out.println("添加管理员...");
+        if(username == null || username.trim().length()==0)
+            return Status.EMPTY_USERNAME;
+        if(password == null || password.trim().length() ==0)
+            return Status.EMPTY_PASSWORD;
         GlyxxInfo glyxxInfo=new GlyxxInfo();
         String pwdAfterSalt = MD5Utils.getSaltMD5(password.trim());
         glyxxInfo.setMm(pwdAfterSalt);
         glyxxInfo.setGlyzh(username);
+        glyxxInfo.setBm("1");
        // Resultentity resultentity=new Resultentity();
         try {
             if(glyxxInfoMapper.insertSelective(glyxxInfo)>0)
@@ -119,4 +138,39 @@ public class adminServiceImpl implements adminService {
         }
     }
 
+    @Override
+    public Status MotifyAdmin(String glyid,String username, String password) {
+        GlyxxInfo glyxxInfo=new GlyxxInfo();
+        if(glyid == null || glyid.trim().length()==0)
+            return Status.EMPTY_ADMINID;
+        if(username == null || username.trim().length()==0)
+            return Status.EMPTY_USERNAME;
+        if(password == null || password.trim().length() ==0)
+            return Status.EMPTY_PASSWORD;
+        glyxxInfo.setGlyzh(username);
+        glyxxInfo.setGlyid(new BigDecimal(glyid));
+        glyxxInfo.setMm(MD5Utils.getSaltMD5(password));
+        try{
+            if(glyxxInfoMapper.updateByPrimaryKeySelective(glyxxInfo)>0)
+                return Status.OK;
+            return Status.FAIL_UPDATAADMIN;
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+        return Status.ERROR;
+    }
+
+    @Override
+    public Status adminZT(String glyid, Integer ToStatus) {
+        if(glyid == null || glyid.trim().length()==0)
+            return Status.EMPTY_ADMINID;
+        try{
+            if(glyxxInfoMapper.updateBMByGlyid(glyid,ToStatus.toString())>0)
+                return Status.OK;
+            return Status.FAIL_UPDATAADMINSTU;
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+        return Status.ERROR;
+    }
 }

@@ -160,4 +160,5 @@
       Operate = #{operate,jdbcType=VARCHAR}
     where GLYRZID = #{glyrzid,jdbcType=NUMERIC}
   </update>
+
 </mapper>

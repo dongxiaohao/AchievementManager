@@ -31,4 +31,8 @@ public interface adminService {
 
     Status addadmin(String username,String password);
 
+    Status MotifyAdmin(String glyid,String username,String password);
+
+    Status adminZT(String glyid,Integer ToStatus);
+
 }

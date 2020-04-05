@@ -66,24 +66,33 @@ public class AdminConntroller {
 
     @RequestMapping("/motifyadmin")
     @ResponseBody
-    public Resultentity<String> MotifyAdmin(String username,String password){
-        //todo
-        return  null;
+    public Resultentity<String> MotifyAdmin(@Param("glyid") String glyid,@Param("username") String username,@Param("password")String password){
+        Status status =adminService.MotifyAdmin(glyid,username,password);
+        Resultentity<String> resultentity=adminService.getAdminState(status);
+        return resultentity;
     }
 
+    /**
+     * 禁止管理员登录，现用部门号代替
+     * 部门号为1表示可以登录，为0表示禁止登录
+     * @param glyid
+     * @return
+     */
     @RequestMapping("/ban")
     @ResponseBody
-    public Resultentity<String> BanAdmin()
+    public Resultentity<String> BanAdmin(@Param("glyid") String glyid)
     {
-        //todo
-        return null;
+        Status status=adminService.adminZT(glyid,0);
+        Resultentity<String> resultentity=adminService.getAdminState(status);
+        return resultentity;
     }
     @RequestMapping("/unban")
     @ResponseBody
-    public  Resultentity<String> UnBanAdmin(){
+    public  Resultentity<String> UnBanAdmin(@Param("glyid") String glyid){
 
-        //todo
-        return null;
+        Status status=adminService.adminZT(glyid,1);
+        Resultentity<String> resultentity=adminService.getAdminState(status);
+        return resultentity;
     }
 
     @RequestMapping("/signOut")

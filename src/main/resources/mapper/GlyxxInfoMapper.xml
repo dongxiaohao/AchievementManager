@@ -141,4 +141,9 @@
     from T_GLYXX_INFO
     where T_GLYXX_INFO.SFZH = #{glyzh,jdbcType=VARCHAR};
   </select>
+  <update id="updateBMByGlyid" >
+    update T_GLYXX_INFO
+    set T_GLYXX_INFO.BM = #{bm,jdbcType=VARCHAR}
+    where T_GLYXX_INFO.GLYID = #{glyid,jdbcType=NUMERIC}
+  </update>
 </mapper>
