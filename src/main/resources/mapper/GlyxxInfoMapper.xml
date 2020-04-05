@@ -128,7 +128,7 @@
   <select id="selectPASSByGLYM" resultType="java.lang.String" parameterType="java.lang.String">
     select MM
     from T_GLYXX_INFO
-    where T_GLYXX_INFO.SFZH = #{glyzh,jdbcType=VARCHAR};
+    where T_GLYXX_INFO.SFZH = #{glyzh,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
@@ -139,7 +139,7 @@
     select
     <include refid="Base_Column_List" />
     from T_GLYXX_INFO
-    where T_GLYXX_INFO.SFZH = #{glyzh,jdbcType=VARCHAR};
+    where T_GLYXX_INFO.GLYZH = #{glyzh,jdbcType=VARCHAR}
   </select>
   <update id="updateBMByGlyid" >
     update T_GLYXX_INFO

@@ -14,5 +14,5 @@ public class Constant {
     public static final String SJH = "sjh";
     public static final String YHM = "yhm";
 
-    public static final String LOGIN_URL = "/login";
+    public static final String LOGIN_URL = "/login.html";
 }

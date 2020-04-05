@@ -6,7 +6,7 @@ function login() {
     var username = $("#loginName").val();
     var password = $("#password").val();
     if (username && password){
-        layer.load(1);
+        // layer.load(1);
         $.ajax({
             url: '/login/login',
             type: "POST",
