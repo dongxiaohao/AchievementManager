@@ -33,7 +33,7 @@
     <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})" id="datemin" class="input-text Wdate" style="width:120px;">
     -
     <input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d'})" id="datemax" class="input-text Wdate" style="width:120px;">
-    <button type="submit" class="btn btn-success" id="" name="">
+    <button type="submit" class="btn btn-success" id="searchrecord" name="" onclick="showResults()">
       <i class="icon-search"></i> 查询</button>
 
   </div>
@@ -52,27 +52,27 @@
     <tbody>
       <tr class="text-c">
         <td>高等教育自学考试毕业证明</td>
-        <td>{{recordtable.高等教育自学考试毕业证明}}</td>
+        <td>{{recordtable.zkby}}</td>
       </tr>
       <tr class="text-c">
         <td>全国成人高校招生考试</td>
-        <td>{{recordtable.全国成人高校招生考试}}</td>
+        <td>{{recordtable.crgk}}</td>
       </tr>
       <tr class="text-c">
         <td>辽宁省普通高中学生学业水平考试</td>
-        <td>{{recordtable.辽宁省普通高中学生学业水平考试}}</td>
+        <td>{{recordtable.xysp}}</td>
       </tr>
       <tr class="text-c">
         <td>普通高等学校招生全国统一考试</td>
-        <td>{{recordtable.普通高等学校招生全国统一考试}}</td>
+        <td>{{recordtable.gk}}</td>
       </tr>
       <tr class="text-c">
         <td>自学考试</td>
-        <td>{{recordtable.自学考试}}</td>
+        <td>{{recordtable.zxks}}</td>
       </tr>
       <tr class="text-c">
         <td>辽宁省职业教育对口升学考试</td>
-        <td>{{recordtable.辽宁省职业教育对口升学考试}}</td>
+        <td>{{recordtable.dksx}}</td>
       </tr>
     </tbody>
   </table>
@@ -123,8 +123,8 @@ $(function(){
   showResults();
 });
 function showResults() {
-  var starttime = $("#datemax").val();
-  var endtime = $("#datemin").val();
+  var starttime = $("#datemin").val();
+  var endtime = $("#datemax").val();
 
   $.ajax({
     url:"/recode/statistic",
@@ -134,7 +134,8 @@ function showResults() {
       endtime:endtime
     },
     success:function (data) {
-      record.recordtable = JSON.parse(data);
+      var json = JSON.parse(data);
+      record.recordtable = json.countOfRecord;
     }
   });
 
