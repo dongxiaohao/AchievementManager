@@ -48,7 +48,7 @@ public class LoginController {
         Resultentity<String> resultentity=adminService.getAdminState(status);
         if(resultentity.getResult() == Resultentity.SUCCESS) {
             resultentity.setData(request.getContextPath()+"/index.html");
-            jsonObject.put("next",request.getContextPath()+"/index.html")
+            jsonObject.put("next",request.getContextPath()+"/index.html");
         }
         jsonObject.put("success",resultentity.getResult());
         jsonObject.put("massege",resultentity.getMessage());
