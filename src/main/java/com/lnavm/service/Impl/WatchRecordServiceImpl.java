@@ -62,7 +62,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
 
 //            System.out.println(examinationToCode.getExaminationMap().get(str));
         }
-        System.out.println(list.size());
+//        System.out.println(list.size());
         return list;
     }
 
