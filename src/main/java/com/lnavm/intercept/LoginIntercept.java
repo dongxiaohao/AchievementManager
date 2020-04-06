@@ -19,12 +19,10 @@ public class LoginIntercept implements HandlerInterceptor {
         else {
             HttpSession session = request.getSession();
             session.removeAttribute(Constant.LOGIN_ADMIN);
-            session.removeAttribute(Constant.SJH);
+//            session.removeAttribute(Constant.SJH);
             session.removeAttribute(Constant.YHM);
-            //保存之前访问记录
-            session.setAttribute(Constant.BEFORE_LOGIN_URL_TOKEN, request.getRequestURI());
             //登录失败重定向到登录界面
-            response.sendRedirect(request.getContextPath() + Constant.LOGIN_URL);
+            response.sendRedirect( Constant.LOGIN_URL);
             return false;
         }
     }

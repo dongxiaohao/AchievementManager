@@ -80,7 +80,7 @@ public class GradeServiceImpl implements GradeService {
 //            DksxInfo dksxInfo=dksxInfoMapper.selectByYZBM(yzbm);
 //            grades.setScores(dksxInfo.getScore());
 //        }
-        System.out.println(grades.getScoresMap().size());
+       // System.out.println(grades.getScoresMap().size());
         return grades;
     }
 }

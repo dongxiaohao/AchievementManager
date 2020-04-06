@@ -27,4 +27,12 @@ public interface DlrzInfoMapper {
      * @return       �뵱ǰ�ֻ��Ű󶨵ĵ�¼��־�б�
      */
     List<DlrzInfo> queryBySjh(@Param("sjh") String sjh, Page<DlrzInfo> page);
+
+    List<DlrzInfo> listAll(@Param("order") String order, Page<DlrzInfo> page);
+
+    List<DlrzInfo> queryWithCom(@Param("starttime") String starttimr,@Param("endtime") String endtime,@Param("sjh") String sjh,@Param("order") String order, Page<DlrzInfo> page);
+
+    int countWithCom(@Param("starttime") String starttimr,@Param("endtime") String endtime,@Param("sjh") String sjh);
+
+    int countAll();
 }

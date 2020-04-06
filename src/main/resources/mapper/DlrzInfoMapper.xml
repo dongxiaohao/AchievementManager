@@ -120,4 +120,52 @@
     from T_DLRZ_INFO
     where SJH = #{sjh,jdbcType=VARCHAR}
   </select>
+
+  <select id="queryWithCom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from T_DLRZ_INFO
+    <where>
+      <if test="starttime != null">
+        and T_DLRZ_INFO.DLSJ <![CDATA[>=]]> #{starttime,jdbcType=VARCHAR}
+      </if>
+      <if test="endtime != null">
+        and T_DLRZ_INFO.DLSJ <![CDATA[<=]]> #{endtime,jdbcType = VARCHAR}
+      </if>
+      <if test="sjh != null">
+        and T_DLRZ_INFO.SJH =  #{sjh,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER by T_DLRZ_INFO.DLSJ ${order}
+  </select>
+
+  <select id="listAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from T_DLRZ_INFO
+    ORDER by T_DLRZ_INFO.DLSJ ${order}
+  </select>
+
+  <select id="countWithCom" resultType="java.lang.Integer">
+    select
+    count (T_DLRZ_INFO.DLRZID)
+    from T_DLRZ_INFO
+    <where>
+      <if test="starttime != null">
+        and T_DLRZ_INFO.DLSJ <![CDATA[>=]]> #{starttime,jdbcType=VARCHAR}
+      </if>
+      <if test="endtime != null">
+        and T_DLRZ_INFO.DLSJ <![CDATA[<=]]> #{endtime,jdbcType = VARCHAR}
+      </if>
+      <if test="sjh != null">
+        and T_DLRZ_INFO.SJH =  #{sjh,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="countAll" resultType="java.lang.Integer">
+    select
+    count (T_DLRZ_INFO.DLRZID)
+    from T_DLRZ_INFO
+  </select>
 </mapper>

@@ -3,6 +3,8 @@ package com.lnavm.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.lnavm.pojo.CxRecord;
 import com.lnavm.pojo.CxbInfo;
+import com.lnavm.pojo.DlrzInfo;
+import com.lnavm.pojo.XtrzInfo;
 import com.lnavm.service.WatchRecordService;
 import com.lnavm.thirdutils.Page;
 import org.apache.catalina.LifecycleState;
@@ -65,6 +67,21 @@ public class WatchRecordController {
         JSONObject jsonObject = new JSONObject();
         HashMap<String,String> numOfRecord = watchRecordService.StatisticRecord(starttime, endtime);
         jsonObject.put("countOfRecord",numOfRecord);
+        return jsonObject.toString();
+    }
+    @RequestMapping("/Journal")
+    @ResponseBody
+    public String getJournal(@Param("starttime")String starttime, @Param("endtime") String endtime,@Param("order") String order, @Param("yhsjh") String yhsjh , HttpServletRequest request, HttpServletResponse response){
+
+        //todo
+        JSONObject jsonObject = new JSONObject();
+        Page page = new Page<>(request, response);
+        List<DlrzInfo> list = watchRecordService.getJournal(starttime,endtime,order,yhsjh,page);
+        page.initialize();
+        Integer count=watchRecordService.countJournal(starttime,endtime,yhsjh);
+        jsonObject.put("JoyrnalList",list);
+        jsonObject.put("page",page);
+        jsonObject.put("count",count);
         return jsonObject.toString();
     }
 }
