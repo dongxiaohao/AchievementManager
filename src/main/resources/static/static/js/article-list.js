@@ -72,12 +72,17 @@ function article_edit(title,url,obj,id,w,h){
         },
         success: function(data){
             var json=JSON.parse(data);
-            recorder.gradesinfo=json.Scores;
-            recorder.proinfo=json.Others;
-            recorder.status=json.success;
-            console.log(recorder.gradesinfo);
-            console.log(recorder.proinfo);
-            showinfo();
+            if(json.success === "true"){
+                recorder.gradesinfo=json.Scores;
+                recorder.proinfo=json.Others;
+                recorder.status=json.success;
+                console.log(recorder.gradesinfo);
+                console.log(recorder.proinfo);
+                showinfo();
+            }else {
+                alert(json.result);
+            }
+
         },
         error:function(data) {
             // console.log("怎么了");

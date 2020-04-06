@@ -64,6 +64,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/lib/**",
                 "/static/**",
                 "/temp/**",
+                "/admin/isSignin",
         };
         //添加登录拦截器
         registry.addInterceptor(new LoginIntercept()).addPathPatterns("/**").excludePathPatterns(exclude);

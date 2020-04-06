@@ -52,7 +52,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
             starttime=this.Guifan(starttime,0);
             endtime=this.Guifan(endtime,1);
         //            list=cxbInfoMapper.queryByKslx(kslx,startstringToTimpstamp(starttime,0),startstringToTimpstamp(endtime,1),order,yhsjh,page);
-            list=cxbInfoMapper.queryByKslx(kslx,starttime.trim(),endtime.trim(),order,yhsjh,page);
+            list=cxbInfoMapper.queryByKslx(kslx,starttime,endtime,order,yhsjh,page);
         }
 
         //添加考试名称
@@ -151,7 +151,7 @@ public class WatchRecordServiceImpl implements WatchRecordService {
                 time = time + " 23:59:59";
                 break;
         }
-        return time;
+        return time.trim();
     }
 
     @Override

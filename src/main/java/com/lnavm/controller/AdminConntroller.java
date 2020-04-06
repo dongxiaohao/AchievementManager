@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -103,4 +104,17 @@ public class AdminConntroller {
         return "longin";
     }
 
+    @RequestMapping(value = "/isSignin")
+    @ResponseBody
+    public String isSignin(HttpServletRequest request) {
+        JSONObject jsonObject=new JSONObject();
+        if(request.getSession().getAttribute(Constant.LOGIN_ADMIN)==null){
+            jsonObject.put("signinStatus", "failed");
+        }else {
+            jsonObject.put("signInName",request.getSession().getAttribute("username"));
+            jsonObject.put("signinStatus", "success");
+        }
+
+        return jsonObject.toString();
+    }
 }
