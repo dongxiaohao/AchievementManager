@@ -6,7 +6,7 @@ function login() {
     var username = $("#loginName").val();
     var password = $("#password").val();
     if (username && password){
-        layer.load(1);
+        // layer.load(1);
         $.ajax({
             url: '/login/login',
             type: "POST",
@@ -15,10 +15,11 @@ function login() {
                 pawassord: password,
             },
             success:function(data){
-                layer.closeAll();
+                // layer.closeAll();
                 var json = JSON.parse(data);
-                if (json.signin_status === "成功"){
-                    window.location.href = "/welcome.html";
+                if (json.massege === "成功"){
+                    // alert("登录成功");
+                    window.location.href = "/index.html";
                 }
                 else {
                     //提示用户名或密码不正确
@@ -38,4 +39,6 @@ function login() {
 function cancle() {
     $("#loginName").val("");
     $("#password").val("");
+    $('.info_empty').hide();
+    $('.info_error').hide();
 }

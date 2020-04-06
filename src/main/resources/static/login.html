@@ -25,18 +25,20 @@
 
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value="" />
-<div class="header"></div>
+<div class="header">
+    <p style="font-size:30px; text-align: center; color: white; margin-top: 5px">成绩证明后台管理系统</p>
+</div>
 <div class="loginWraper">
   <div id="login" class="loginBox">
 <!--    <form class="form form-horizontal" action="index.html" method="post">-->
       <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+        <label class="form-label col-xs-3" style="padding-left: 120px" ><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
           <input id="loginName" style="width: 330px" type="text" placeholder="用户名" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
-        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+        <label class="form-label col-xs-3" style="padding-left: 120px"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-xs-8">
           <input id="password" style="width: 330px" type="password" placeholder="密码" class="input-text size-L">
         </div>
@@ -54,9 +56,9 @@
 <!--        </div>-->
 <!--      </div>-->
       <div class="row cl">
-        <div class="formControls col-xs-8 col-xs-offset-3">
-          <span class="info_empty" style="color: red; display: none;">用户名或密码不能为空</span>
-          <span class="info_error" style="color: red; display: none;">登录失败，用户名或密码不正确</span>
+        <div class="formControls col-xs-8 col-xs-offset-3" style="margin-top: 20px">
+          <p class="info_empty" style="color: red; display: none;">用户名或密码不能为空</p>
+          <p class="info_error" style="color: red; display: none;">登录失败，用户名或密码不正确</p>
           <input style="width: 150px" type="button" class="btn btn-success radius size-L" onclick="login();" value="登     录">
           <input style="width: 150px;margin-left: 30px" type="button" class="btn btn-default radius size-L" onclick="cancle();" value="取     消">
         </div>
@@ -71,7 +73,6 @@
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 <!--此乃百度统计代码，请自行删除-->
 <script>
-
 </script>
 </body>
 </html>

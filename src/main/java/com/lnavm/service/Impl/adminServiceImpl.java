@@ -27,9 +27,9 @@ public class adminServiceImpl implements adminService {
     @Override
     public Status loginin(String username, String password) {
         //空校验
-        if(username.length()==0|| username.equals(""))
+        if(username==null||username.trim().length()==0 )
             return Status.EMPTY_USERNAME;
-        if(password.length()==0 || password.equals(""))
+        if( password==null || password.trim().length()==0 )
             return Status.EMPTY_PASSWORD;
         try {
             GlyxxInfo glyxxInfo=getGlyxxInfo(username);
@@ -43,6 +43,7 @@ public class adminServiceImpl implements adminService {
 
             return Status.EMPTY_PASSWORD;
         }catch (Exception e){
+            System.out.println(e.toString());
             return Status.ERROR;
         }
     }
