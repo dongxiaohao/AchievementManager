@@ -9,7 +9,7 @@ public class Constant {
 
     public static final String LOGIN_ADMIN = "admin";
     public static final String BEFORE_LOGIN_URL_TOKEN = "beforeLoginUrl";
-    public static final String INDEX_URL = "/index";
+    public static final String INDEX_URL = "/index.html";
 
     public static final String SJH = "sjh";
     public static final String YHM = "yhm";

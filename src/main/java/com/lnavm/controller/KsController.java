@@ -6,6 +6,7 @@ import com.lnavm.Config.ExaminationToCode;
 import com.lnavm.Config.SupportExamination;
 import com.lnavm.entity.Grades;
 import com.lnavm.service.GradeService;
+import com.lnavm.statusenum.Status;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,22 +39,33 @@ public class KsController {
     @ResponseBody
     public String WatchGrade(@Param("yzbm") String yzbm, @Param("kslx") String kslx){
         JSONObject jsonObject=new JSONObject();
-        if(yzbm == null || yzbm.length() ==0){
+        if(yzbm == null || yzbm.trim().length() ==0){
             jsonObject.put("success","false");
-            jsonObject.put("result","验证编码为空，请重新确认！");
+            jsonObject.put("result","该用户无成绩，请确认查询状态！");
+            return  jsonObject.toString();
         }
-        if(kslx==null || kslx.length()==0){
+        if(kslx==null || kslx.trim().length()==0){
             jsonObject.put("success","false");
             jsonObject.put("result","出现错误，请重新尝试！");
+            return  jsonObject.toString();
         }
         // 将考试类型转换为考试代码
         if(examinationToCode.getCodeMap().containsKey(kslx)){
            kslx=examinationToCode.getCodeMap().get(kslx);
         }
+       // System.out.println("");
         Grades grades=gradeService.getGrade(yzbm ,kslx);
-        jsonObject.put("success","true");
-        jsonObject.put("Scores",grades.getScoresMap());
-        jsonObject.put("Others",grades.getOtherMap());
+        if(grades == null){
+            jsonObject.put("success","false");
+//            jsonObject.put("Scores",grades.getScoresMap());
+//            jsonObject.put("Others",grades.getOtherMap());
+            jsonObject.put("message", Status.ERROR_MAG);
+        }else {
+            jsonObject.put("success","true");
+            jsonObject.put("Scores",grades.getScoresMap());
+            jsonObject.put("Others",grades.getOtherMap());
+        }
+
         return jsonObject.toString();
     }
 }
