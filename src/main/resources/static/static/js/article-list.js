@@ -77,22 +77,27 @@ function article_edit(title,url,obj,id,w,h){
             recorder.status=json.success;
             console.log(recorder.gradesinfo);
             console.log(recorder.proinfo);
-            //showinfo();
+            showinfo();
         },
         error:function(data) {
             // console.log("怎么了");
             alert("没有数据！");
         },
     });
-    var index = layer.open({
-        type: 2,
-        title: title,
-        content: url,
-    });
-    layer.full(index);
+    // var index = layer.open({
+    //     type: 2,
+    //     title: title,
+    //     content: url,
+    // });
+    // layer.full(index);
 }
 
 //展示查询结果
 function showinfo(){
-
+    document.getElementById('resultmodel').style.display='block';   //显示查询成绩结果框
+    document.getElementById("cover").style.display = "block"; //遮罩层
+}
+function closeDialog_2(){
+    document.getElementById('resultmodel').style.display='none';
+    document.getElementById("cover").style.display = "none";
 }

@@ -124,6 +124,97 @@
 			</nav>
 		</div>
 	</div>
+    <div id="cover" style="background: #000; position: absolute; left: 0px; top: 0px; width: 100%;height: 100%; filter: alpha(opacity=30); opacity: 0.3; display: none; z-index: 2 ">
+    </div>>
+    <!--查询结果框-->
+    <div id="resultmodel"  style="display: none;position: fixed;overflow: auto;bottom:0; right:0;top: 0;left: 0;margin: 0px 0 0 0px;background: rgb(255,255,255);border: 1px solid rgb(146,147,1494);z-index: 990;">
+        <table  cellspacing="0" cellpadding="0" >
+            <tbody>
+            <tr style="height:30px; background-color:#ededed;">
+                <td style="padding-left: 6px;">
+                    &nbsp;查询结果
+                </td>
+                <td  style="height:24px; padding-right:4px; width:100px;text-align: right;">
+                    &nbsp;
+                    <a href = "javascript:void(0)" onclick = "closeDialog_2()">关闭</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="checkStatus" style="padding: 2px">
+            <div id="status" style="font-size: 17px; margin: 10px 15px 10px 15px;">
+                <p class="f-20 text-success" id="demo" style="text-align: center;font-size: 22px;font-weight: bolder">{{recorder.checkksm}}</p>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3" style="width:7%">姓名：</label>
+                    <div class="formControls col-xs-8 col-sm-9"> {{recorder.checkxm}}</div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3" style="width:7%">身份证号：</label>
+                    <div class="formControls col-xs-8 col-sm-9"> {{recorder.checksfzh}}</div>
+                </div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3" style="width:7%">考试年份：</label>
+                    <div class="formControls col-xs-8 col-sm-9">{{recorder.ksnf}}</div>
+                </div>
+                <table class="table table-border table-bordered table-bg mt-20">
+                    <thead>
+                    <!--<tr>-->
+                        <!--<th colspan="2" scope="col">查询结果</th>-->
+                    <!--</tr>-->
+                    <tr>
+                        <th width="30%">科目</th>
+                        <th><span id="lbServerName">成绩</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(key,kskm) in gradesinfo" >
+                        <td>{{kskm}}</td>
+                        <td>{{key}}</td>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<td>化学</td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>历史 </td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>地理 </td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>政治 </td>-->
+                        <!--<td>B</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>数学 </td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>物理 </td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>生物 </td>-->
+                        <!--<td>A</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>英语 </td>-->
+                        <!--<td>B</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>语文 </td>-->
+                        <!--<td>B</td>-->
+                    <!--</tr>-->
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
