@@ -17,8 +17,9 @@ function login() {
             success:function(data){
                 // layer.closeAll();
                 var json = JSON.parse(data);
-                if (json.message === "成功"){
-                    window.location.href = "/welcome.html";
+                if (json.massege === "成功"){
+                    // alert("登录成功");
+                    window.location.href = "/index.html";
                 }
                 else {
                     //提示用户名或密码不正确
