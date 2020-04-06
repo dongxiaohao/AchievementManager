@@ -15,9 +15,9 @@ function login() {
                 pawassord: password,
             },
             success:function(data){
-                layer.closeAll();
+                // layer.closeAll();
                 var json = JSON.parse(data);
-                if (json.signin_status === "成功"){
+                if (json.message === "成功"){
                     window.location.href = "/welcome.html";
                 }
                 else {
@@ -38,4 +38,6 @@ function login() {
 function cancle() {
     $("#loginName").val("");
     $("#password").val("");
+    $('.info_empty').hide();
+    $('.info_error').hide();
 }
