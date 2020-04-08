@@ -1,5 +1,6 @@
 package com.lnavm.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lnavm.utils.IpAdrressUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -20,7 +22,7 @@ public class IndexController {
     @ResponseBody
     public String Getfqqxx(){
         //todo
-
+        JSONObject jsonObject =new JSONObject();
         //得到本机ip地址 和 Mac地址
         try {
             InetAddress address = InetAddress.getLocalHost();
@@ -34,6 +36,8 @@ public class IndexController {
                 sMAC = formatter.format(Locale.getDefault(), "%02X%s", mac[i],
                         (i < mac.length - 1) ? "-" : "").toString();
             }
+            jsonObject.put("thisip",sIP); //本机ip
+            jsonObject.put("thisMac",sMAC); //本机MAC
             System.out.println("IP：" + sIP);
             System.out.println("MAC：" + sMAC);
         } catch (Exception e) {
@@ -44,9 +48,17 @@ public class IndexController {
         //获取访问者ip地址
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         System.out.println("访问ip："+IpAdrressUtil.getIpAddr(request));
-
+        jsonObject.put("fanfwenip",IpAdrressUtil.getIpAddr(request));  //访问ip
         //得到系统基本信息
         Properties props = System.getProperties();
+        jsonObject.put("javaversion",props.getProperty("java.version"));  //Java的运行环境版本
+        jsonObject.put("javavendor",props.getProperty("java.vendor"));//Java的运行环境供应商
+        jsonObject.put("javahome",props.getProperty("java.home"));//Java的安装路径
+        jsonObject.put("javavmversion",props.getProperty("java.vm.specification.version"));//Java的虚拟机规范版本
+        jsonObject.put("osname",props.getProperty("os.name"));//操作系统的名称
+        jsonObject.put("osarch",props.getProperty("os.arch"));//操作系统的构架
+        jsonObject.put("osversion",props.getProperty("os.version"));//操作系统的版本
+
         System.out.println("Java的运行环境版本：" + props.getProperty("java.version"));
         System.out.println("Java的运行环境供应商：" + props.getProperty("java.vendor"));
         System.out.println("Java供应商的URL：" + props.getProperty("java.vendor.url"));
@@ -68,6 +80,6 @@ public class IndexController {
         System.out.println("操作系统的名称：" + props.getProperty("os.name"));
         System.out.println("操作系统的构架：" + props.getProperty("os.arch"));
         System.out.println("操作系统的版本：" + props.getProperty("os.version"));
-        return null;
+        return jsonObject.toString();
     }
 }
