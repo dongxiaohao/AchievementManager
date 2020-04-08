@@ -78,12 +78,17 @@
     </tbody>
   </table>
   <div id="pageNav" class="pageNav"></div>
+
+  <div id="container" style="min-width:700px;height:400px"></div>
+
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
+<script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
@@ -118,12 +123,88 @@
 var record = new Vue({
   el:"#record",
   data:{
-    recordtable:''
+    recordtable:'',
   }
 });
 $(function(){
   showResults();
+  // var zkby = record.recordtable.zkby;
+  // var crgk = record.recordtable.crgk;
+  // var xysp = record.recordtable.xysp;
+  // var gk = record.recordtable.gk;
+  // var zxks = record.recordtable.zxks;
+  // var dksx = record.recordtable.dksx;
+  // var total = zkby+crgk+xysp+gk+zxks+dksx;
+  //
+  // var zkby = Math.floor(record.recordtable.zkby/total*100);
+  // var crgk = Math.floor(record.recordtable.crgk/total*100);
+  // var xysp = Math.floor(record.recordtable.xysp/total*100);
+  // var gk = Math.floor(record.recordtable.gk/total*100)/100;
+  // var zxks = Math.floor(record.recordtable.zxks/total*100);
+  // var dksx = Math.floor(record.recordtable.dksx/total*100);
+
+  // var chart = $('#container').highcharts();
+  // chart.series[0].
+  $('#container').highcharts({
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false
+    },
+    title: {
+      text: '各类考试查询次数统计饼状图'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.y}</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          color: '#000000',
+          connectorColor: '#000000',
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        }
+      }
+    },
+    series: [{
+      type: 'pie',
+      name: '成绩查询次数',
+      data: [
+        {
+          name:'高等教育自学考试毕业证明',
+          y:parseInt(record.recordtable.zkby)
+        },
+        {
+          name: '全国成人高校招生考试',
+          y:parseInt(record.recordtable.crgk),
+          sliced: true,
+          selected: true
+        },
+        {
+          name:'辽宁省普通高中学生学业水平考试',
+          y:parseInt(record.recordtable.xysp)
+        },
+        {
+          name:'普通高等学校招生全国统一考试',
+          y:parseInt(record.recordtable.gk)
+        },
+        {
+          name:'自学考试',
+          y:parseInt(record.recordtable.zxks)
+        },
+        {
+          name:'辽宁省职业教育对口升学考试',
+          y:parseInt(record.recordtable.dksx)
+        }
+      ]
+    }]
+  });
+
 });
+
 function showResults() {
   var starttime = $("#datemin").val();
   var endtime = $("#datemax").val();
@@ -131,6 +212,7 @@ function showResults() {
   $.ajax({
     url:"/recode/statistic",
     type:"GET",
+    async:false,
     data:{
       starttime:starttime,
       endtime:endtime
