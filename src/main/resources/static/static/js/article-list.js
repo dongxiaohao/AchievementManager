@@ -13,7 +13,7 @@ var recorder = new Vue({
         proinfo:[],
         yzbm:"",
         checkxm:"",
-        checkksm:"2",
+        checkksm:"",
         checksfzh:"",
         checkksnf:"",
         status:"",
@@ -42,7 +42,7 @@ function submitRequire(obj){
         },
         success: function(data){
             var json=JSON.parse(data);
-            console.log(data);
+            // console.log(data);
             recorder.recordlist=json.recordList;
             recorder.page = json.page;
         },
@@ -58,11 +58,11 @@ function article_edit(title,url,obj,id,w,h){
     recorder.yzbm=$(obj).attr("data-yzbm");
     var thiskslx=$(obj).attr("data-kslx");
     recorder.checkxm=tr.getAttribute("data-xm");
-    console.log(recorder.checkxm);
+    //console.log(recorder.checkxm);
     recorder.checksfzh=tr.getAttribute("data-sfzh");
     recorder.checkksm=tr.getAttribute("data-ksm");
     recorder.ksnf=tr.getAttribute("data-ksnf");
-    console.log(recorder.flag);
+    //console.log(recorder.flag);
     $.ajax({
         type: 'POST',
         url: "/ks/watchgrade",
@@ -75,8 +75,8 @@ function article_edit(title,url,obj,id,w,h){
             recorder.gradesinfo=json.Scores;
             recorder.proinfo=json.Others;
             recorder.status=json.success;
-            console.log(recorder.gradesinfo);
-            console.log(recorder.proinfo);
+            if (typeof recorder.proinfo === "undefined")
+                console.log("是为定义");
             showinfo();
         },
         error:function(data) {
@@ -84,6 +84,7 @@ function article_edit(title,url,obj,id,w,h){
             alert("没有数据！");
         },
     });
+
     // var index = layer.open({
     //     type: 2,
     //     title: title,

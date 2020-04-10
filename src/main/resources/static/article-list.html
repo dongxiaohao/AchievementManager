@@ -161,14 +161,22 @@
                     <!--<tr>-->
                         <!--<th colspan="2" scope="col">查询结果</th>-->
                     <!--</tr>-->
-                    <tr>
+                    <tr v-if="typeof recorder.proinfo === 'undefined'">
                         <th width="30%">科目</th>
                         <th><span id="lbServerName">成绩</span></th>
                     </tr>
+                    <tr v-else>
+                        <th width="30%"></th>
+                        <th><span id="lbServerName"></span></th>
+                    </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(key,kskm) in gradesinfo" >
+                    <tr v-if="typeof recorder.proinfo === 'undefined'" v-for="(key,kskm) in gradesinfo" >
                         <td>{{kskm}}</td>
+                        <td>{{key}}</td>
+                    </tr>
+                    <tr v-else v-for="(key,ksk) in proinfo" >
+                        <td>{{ksk}}</td>
                         <td>{{key}}</td>
                     </tr>
                     <!--<tr>-->
@@ -236,17 +244,17 @@
             var json = JSON.parse(data);
             recorder.kslxxx = json.ksxx;
             //console.log(recorder.kslxxx);
-            console.log(data);
-            console.log(data.ksxx);
-            console.log(json);
-            console.log(json.ksxx);
-            console.log(recorder.kslxxx.ksxx);
-            console.log(recorder.kslxxx);
+            // console.log(data);
+            // console.log(data.ksxx);
+            // console.log(json);
+            // console.log(json.ksxx);
+            // console.log(recorder.kslxxx.ksxx);
+            // console.log(recorder.kslxxx);
             for(var key in recorder.kslxxx){
                 var ab=recorder.kslxxx[key];
-                console.log(ab);
-                console.log(key);
-                console.log("???");
+                // console.log(ab);
+                // console.log(key);
+                // console.log("???");
             };
             // console.log(recorder.kslxxx.key(1));
             // console.log(recorder.kslxxx.key());
