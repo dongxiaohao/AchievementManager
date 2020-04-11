@@ -22,7 +22,9 @@ public class LoginIntercept implements HandlerInterceptor {
 //            session.removeAttribute(Constant.SJH);
             session.removeAttribute(Constant.YHM);
             //登录失败重定向到登录界面
+            System.out.println("拦截...");
             response.sendRedirect( Constant.LOGIN_URL);
+           // response.
             return false;
         }
     }
