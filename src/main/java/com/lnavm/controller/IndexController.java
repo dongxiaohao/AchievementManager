@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Controller
 public class IndexController {
-    @RequestMapping("/index")
+    @RequestMapping("/indexxx")
     @ResponseBody
     public String Getfqqxx(){
         //todo
