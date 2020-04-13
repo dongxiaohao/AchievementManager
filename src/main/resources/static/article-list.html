@@ -167,10 +167,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(key,kskm) in gradesinfo" >
-                        <td>{{kskm}}</td>
-                        <td>{{key}}</td>
-                    </tr>
+                    <tr v-if="typeof recorder.proinfo === 'undefined'" v-for="(key,kscj) in gradesinfo" >
+						<td>{{kscj}}</td>
+						<td>{{key}}</td>
+					</tr>
+					<tr v-if="typeof recorder.gradesinfo === 'undefined'" v-for="(key,kscj) in proinfo" >
+						<td>{{kscj}}</td>
+						<td>{{key}}</td>
+					</tr>
                     <!--<tr>-->
                         <!--<td>化学</td>-->
                         <!--<td>A</td>-->
