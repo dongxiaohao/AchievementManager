@@ -41,12 +41,12 @@ public class GradeServiceImpl implements GradeService {
                 break;
             case"14":
                 ZkbysInfo zkbysInfo=zkbysInfoMapper.selectByYZBM(yzbm);
-                grades.addOtherMessage("zydm", zkbysInfo.getZydm());
-                grades.addOtherMessage("zymc", zkbysInfo.getZymc());
-                grades.addOtherMessage("zid", zkbysInfo.getZid());
-                grades.addOtherMessage("zkyx", zkbysInfo.getZkyx());
+                grades.addOtherMessage("专业代码", zkbysInfo.getZydm());
+                grades.addOtherMessage("专业名称", zkbysInfo.getZymc());
+                grades.addOtherMessage("自考ID", zkbysInfo.getZid());
+                grades.addOtherMessage("自考毕业院校", zkbysInfo.getZkyx());
                 grades.addOtherMessage("zycc", zkbysInfo.getZycc());
-                grades.addOtherMessage("bysj", zkbysInfo.getBysj());
+                grades.addOtherMessage("毕业时间", zkbysInfo.getBysj());
                 break;
             case"18":
                 ZkkscjInfo zkkscjInfo=zkkscjInfoMapper.selectByYZBM(yzbm);
