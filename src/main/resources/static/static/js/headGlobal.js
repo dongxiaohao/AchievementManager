@@ -17,11 +17,11 @@ $(function () {
 
     $("#logout").click(function () {
         $.ajax({
-            url: '/user/logout', type: "POST",
+            url: '/admin/signOut', type: "POST",
             success: function (data) {
                 var json = JSON.parse(data);
                 if (json.logoutStatus === "success") {
-                    window.location.href = "/signin.html";
+                    window.location.href = "/login.html";
                 }
             }
         });

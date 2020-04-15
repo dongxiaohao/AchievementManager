@@ -26,4 +26,5 @@ public interface GlyxxInfoMapper {
 
     List<GlyxxInfo> selectAll(Page<GlyxxInfo> page);
     int updateBMByGlyid(@Param("glyid") String glyid,@Param("bm") String bm);
+    int countAdminStatus(@Param("bm") String bm);
 }

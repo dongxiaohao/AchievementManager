@@ -1,6 +1,7 @@
 package com.lnavm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lnavm.annotations.GLYLogAnnotation;
 import com.lnavm.entity.Resultentity;
 import com.lnavm.pojo.YhrecordInfo;
 import com.lnavm.service.UserService;
@@ -41,6 +42,7 @@ public class UserController {
 //        this.jsonObject = jsonObject;
 //    }
 
+    @GLYLogAnnotation(value = "查看用户")
     @RequestMapping("/service")
     @ResponseBody
     public String QureyUser(String SfzhorSjh, HttpServletRequest request, HttpServletResponse response){
@@ -70,6 +72,7 @@ public class UserController {
 //        return null;
     }
 
+    @GLYLogAnnotation(value = "修改用户手机号")
     @RequestMapping("/motify")
     @ResponseBody
     public Resultentity<String> MotifyUser(String yhid,String sjh){
@@ -84,6 +87,7 @@ public class UserController {
      * @param userid
      * @return
      */
+    @GLYLogAnnotation(value = "禁止用户登录")
     @RequestMapping("/ban")
     @ResponseBody
     public Resultentity<String> BanUser(@Param("uSuser" +
@@ -97,6 +101,7 @@ public class UserController {
      * @param userid
      * @return
      */
+    @GLYLogAnnotation(value = "允许用户登录")
     @RequestMapping("/unban")
     @ResponseBody
     public Resultentity<String> UnbanUser(@Param("userid") String userid){

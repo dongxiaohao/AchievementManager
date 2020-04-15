@@ -8,6 +8,7 @@ public class Constant {
     public static final String BASE_FILE_PATH = "baseFilePath";  //用户保存文件的基础文件地址
 
     public static final String LOGIN_ADMIN = "admin";
+    public static final String LAST_LOGIN_ADMIN="last_admin";
     public static final String BEFORE_LOGIN_URL_TOKEN = "beforeLoginUrl";
     public static final String INDEX_URL = "/index.html";
 

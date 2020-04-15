@@ -2,6 +2,7 @@ package com.lnavm.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lnavm.Config.Constant;
+import com.lnavm.annotations.GLYLogAnnotation;
 import com.lnavm.entity.Resultentity;
 import com.lnavm.pojo.GlyxxInfo;
 import com.lnavm.service.adminService;
@@ -23,6 +24,7 @@ public class LoginController {
     @Autowired
     adminService adminService;
 
+    @GLYLogAnnotation(value = "管理员登录")
     @ResponseBody
     @RequestMapping("/login")
     public String Loginin(@Param("username") String username,@Param("pawassord") String pawassord, HttpSession session, HttpServletRequest request ){

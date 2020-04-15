@@ -34,5 +34,6 @@ public interface adminService {
     Status MotifyAdmin(String glyid,String username,String password);
 
     Status adminZT(String glyid,Integer ToStatus);
+    int countValidAdmin(int Status);
 
 }

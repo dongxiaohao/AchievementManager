@@ -146,4 +146,10 @@
     set T_GLYXX_INFO.BM = #{bm,jdbcType=VARCHAR}
     where T_GLYXX_INFO.GLYID = #{glyid,jdbcType=NUMERIC}
   </update>
+  <select id="countAdminStatus" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(T_GLYXX_INFO.GLYID)
+    from T_GLYXX_INFO
+    where T_GLYXX_INFO.BM = #{bm,jdbcType=VARCHAR}
+
+  </select>
 </mapper>

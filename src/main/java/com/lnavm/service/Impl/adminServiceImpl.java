@@ -90,11 +90,19 @@ public class adminServiceImpl implements adminService {
                 break;
             case FAIL_UPDATAADMIN:
                 resultentity.setMessage(Status.FAIL_UPDATAADMIN_MAG);
+                break;
             case FAIL_UPDATAADMINSTU:
                 resultentity.setMessage(Status.FAIL_UPDATAADMINSTU_MAG);
+                break;
             case BAN_ADMIN:
                 resultentity.setMessage(Status.BAN_ADMIN_MAG);
-
+                break;
+            case SAME_ADMIN:
+                resultentity.setMessage(Status.SAME_ADMIN_MAG);
+                break;
+            case VALID_ADMIN_SMALL:
+                resultentity.setMessage(Status.VALID_ADMIN_SMALL_MAG);
+                break;
         }
 
         return resultentity;
@@ -163,6 +171,7 @@ public class adminServiceImpl implements adminService {
 
     @Override
     public Status adminZT(String glyid, Integer ToStatus) {
+
         if(glyid == null || glyid.trim().length()==0)
             return Status.EMPTY_ADMINID;
         try{
@@ -173,5 +182,10 @@ public class adminServiceImpl implements adminService {
             System.out.println(e.toString());
         }
         return Status.ERROR;
+    }
+
+    @Override
+    public int countValidAdmin(int Status) {
+        return glyxxInfoMapper.countAdminStatus(Status+"");
     }
 }

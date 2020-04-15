@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lnavm.Config.Examination;
 import com.lnavm.Config.ExaminationToCode;
 import com.lnavm.Config.SupportExamination;
+import com.lnavm.annotations.GLYLogAnnotation;
 import com.lnavm.entity.Grades;
 import com.lnavm.service.GradeService;
 import com.lnavm.statusenum.Status;
@@ -35,6 +36,7 @@ public class KsController {
         return jsonObject.toString();
     }
 
+    @GLYLogAnnotation(value = "查看成绩数据")
     @RequestMapping("/watchgrade")
     @ResponseBody
     public String WatchGrade(@Param("yzbm") String yzbm, @Param("kslx") String kslx){

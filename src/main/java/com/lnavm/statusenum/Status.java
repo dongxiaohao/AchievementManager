@@ -20,6 +20,8 @@ public enum Status {
     EMPTY_ADMINID, //管理员id为空
     FAIL_UPDATAADMIN, //管理员修改失败
     FAIL_UPDATAADMINSTU, //管理员状态修改失败，禁止或解禁
+    SAME_ADMIN, //禁止登录管理员与当前登录管理员相同
+    VALID_ADMIN_SMALL, //合法管理员数量过少
 
     //修改用户登录状态
     FAIL_BAN,  //用户登录状态修改失败
@@ -44,4 +46,7 @@ public enum Status {
     public static final String  FAIL_UPDATAADMIN_MAG="管理员信息修改失败，请重新尝试"; //管理员修改失败
     public static final String FAIL_UPDATAADMINSTU_MAG="禁止或解禁管理员失败，请重新尝试";
     public static final String BAN_ADMIN_MAG="该管理员已被禁止登录";
+    public static final String SAME_ADMIN_MAG="不可以禁止自己哟！！";
+    public static final String VALID_ADMIN_SMALL_MAG="当前仅有一位可登录管理员，不可以禁止了哟！！";
+
 }
