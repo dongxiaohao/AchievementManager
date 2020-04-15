@@ -61,18 +61,18 @@ public class GLYLogAspect {
         if(glyxxInfo == null)
             glyxxInfo = (GlyxxInfo) session.getAttribute(Constant.LAST_LOGIN_ADMIN);
 
-        if(glyxxInfo.getBm() != null)
+        if(glyxxInfo != null || glyxxInfo.getBm() != null)
             glyrzInfo.setBm(glyxxInfo.getBm());
         glyrzInfo.setCxkslx(null);
         glyrzInfo.setCzjg(null);
         glyrzInfo.setCxsfzh(null);
         glyrzInfo.setCzsj(DateConverter.getCurrentFormatDate());
-        if(glyxxInfo.getGlyid() != null)
+        if(glyxxInfo != null || glyxxInfo.getGlyid() != null)
         glyrzInfo.setDlzh(glyxxInfo.getGlyid().toString());
         //glyrzInfo.setGlyrzid(.);
         glyrzInfo.setIpdz(IpAdrressUtil.getIpAddr(request));
         glyrzInfo.setQqff(null);
-        if(glyxxInfo.getGlyzh() != null)
+        if(glyxxInfo != null || glyxxInfo.getGlyzh() != null)
         glyrzInfo.setXm(glyxxInfo.getGlyzh());
 
         logService.save(glyrzInfo);
